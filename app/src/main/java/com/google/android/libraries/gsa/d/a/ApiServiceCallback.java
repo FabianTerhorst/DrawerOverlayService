@@ -133,7 +133,7 @@ final class ApiServiceCallback extends BaseCallback {
         }
     }
 
-    public final void a(PrintWriter printWriter, String str) {
+    public final void dump(PrintWriter printWriter, String str) {
         printWriter.println(String.valueOf(str).concat("APIServiceCallback"));
         String concat = String.valueOf(str).concat("  ");
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsPrewarm: ").append(this.mSupportsPrewarm).toString());

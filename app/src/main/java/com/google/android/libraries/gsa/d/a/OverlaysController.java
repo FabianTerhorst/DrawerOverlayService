@@ -109,7 +109,7 @@ public abstract class OverlaysController {
                 printWriter.println(new StringBuilder(String.valueOf(str).length() + 30).append(str).append("mLastAttachWasLandscape: ").append(overlayControllerBinderVar.uoy).toString());
                 BaseCallback baseCallbackVar = overlayControllerBinderVar.baseCallback;
                 if (baseCallbackVar != null) {
-                    baseCallbackVar.a(printWriter, str);
+                    baseCallbackVar.dump(printWriter, str);
                 }
             } else {
                 printWriter.println("  null client: " + size);

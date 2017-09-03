@@ -16,13 +16,13 @@ public final class MinusOneOverlayCallback extends OverlayControllerCallback {
         this.overlaysController = overlaysControllerVar;
     }
 
-    final OverlayController c(Configuration configuration) {
+    final OverlayController createController(Configuration configuration) {
         return this.overlaysController.createController(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, true, true);
     }
 
-    public final void a(PrintWriter printWriter, String str) {
+    public final void dump(PrintWriter printWriter, String str) {
         printWriter.println(String.valueOf(str).concat("MinusOneOverlayCallback"));
-        super.a(printWriter, str);
+        super.dump(printWriter, str);
     }
 
     public final boolean handleMessage(Message message) {

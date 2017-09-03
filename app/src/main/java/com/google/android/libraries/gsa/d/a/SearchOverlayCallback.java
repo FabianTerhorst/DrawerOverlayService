@@ -15,12 +15,12 @@ public final class SearchOverlayCallback extends OverlayControllerCallback {
         this.overlaysController = overlaysControllerVar;
     }
 
-    public final void a(PrintWriter printWriter, String str) {
+    public final void dump(PrintWriter printWriter, String str) {
         printWriter.println(String.valueOf(str).concat("SearchOverlayCallback"));
-        super.a(printWriter, str);
+        super.dump(printWriter, str);
     }
 
-    final OverlayController c(Configuration configuration) {
+    final OverlayController createController(Configuration configuration) {
         return this.overlaysController.createController(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, false, true);
     }
 

@@ -12,7 +12,7 @@ class BaseCallback implements Callback {
         return true;
     }
 
-    public void a(PrintWriter printWriter, String str) {
+    public void dump(PrintWriter printWriter, String str) {
         printWriter.println(String.valueOf(str).concat("BaseCallback: nothing to dump"));
     }
 }

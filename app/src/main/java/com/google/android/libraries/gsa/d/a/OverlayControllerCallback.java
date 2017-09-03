@@ -21,7 +21,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
     public final int uor;
     public OverlayController overlayController;
 
-    abstract OverlayController c(Configuration configuration);
+    abstract OverlayController createController(Configuration configuration);
 
     public OverlayControllerCallback(OverlayControllerBinder overlayControllerBinderVar, int i) {
         this.overlayControllerBinder = overlayControllerBinderVar;
@@ -53,7 +53,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                 }
                 Pair pair = (Pair) message.obj;
                 LayoutParams layoutParams = (LayoutParams) ((Bundle) pair.first).getParcelable("layout_params");
-                this.overlayController = c((Configuration) ((Bundle) pair.first).getParcelable("configuration"));
+                this.overlayController = createController((Configuration) ((Bundle) pair.first).getParcelable("configuration"));
                 try {
                     int i;
                     OverlayController overlayControllerVar3 = this.overlayController;
@@ -165,7 +165,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
         }
     }
 
-    public void a(PrintWriter printWriter, String str) {
+    public void dump(PrintWriter printWriter, String str) {
         OverlayController overlayControllerVar = this.overlayController;
         String valueOf = String.valueOf(overlayControllerVar);
         printWriter.println(new StringBuilder((String.valueOf(str).length() + 8) + String.valueOf(valueOf).length()).append(str).append(" mView: ").append(valueOf).toString());

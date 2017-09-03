@@ -21,7 +21,7 @@ public final class SearchOverlayCallback extends OverlayControllerCallback {
     }
 
     final OverlayController c(Configuration configuration) {
-        return this.overlaysController.a(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, false, true);
+        return this.overlaysController.createController(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, false, true);
     }
 
     public final boolean handleMessage(Message message) {

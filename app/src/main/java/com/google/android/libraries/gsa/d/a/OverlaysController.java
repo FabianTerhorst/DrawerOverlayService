@@ -24,7 +24,7 @@ public abstract class OverlaysController {
         this.service = service;
     }
 
-    public abstract OverlayController a(Configuration configuration, int i, int i2, boolean z, boolean z2);
+    public abstract OverlayController createController(Configuration configuration, int i, int i2, boolean z, boolean z2);
 
     public final synchronized IBinder onBind(Intent intent) {
         IBinder iBinder;

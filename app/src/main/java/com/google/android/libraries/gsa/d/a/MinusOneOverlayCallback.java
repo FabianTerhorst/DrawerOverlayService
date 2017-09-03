@@ -17,7 +17,7 @@ public final class MinusOneOverlayCallback extends OverlayControllerCallback {
     }
 
     final OverlayController c(Configuration configuration) {
-        return this.overlaysController.a(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, true, true);
+        return this.overlaysController.createController(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, true, true);
     }
 
     public final void a(PrintWriter printWriter, String str) {

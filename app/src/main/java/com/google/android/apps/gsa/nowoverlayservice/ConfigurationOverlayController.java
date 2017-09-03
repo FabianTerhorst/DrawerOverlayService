@@ -26,7 +26,7 @@ public final class ConfigurationOverlayController extends OverlaysController {
         return 24;
     }
 
-    public final OverlayController a(@Nullable Configuration configuration, int i, int i2, boolean z, boolean z2) {
+    public final OverlayController createController(@Nullable Configuration configuration, int i, int i2, boolean z, boolean z2) {
         Context context = this.mContext;
         if (VERSION.SDK_INT >= 17 && configuration != null) {
             context = context.createConfigurationContext(configuration);

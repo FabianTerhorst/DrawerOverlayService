@@ -22,7 +22,7 @@ final class TransparentOverlayController implements t {
     public final void oc(boolean z) {
     }
 
-    public final void cnG() {
+    public final void open() {
         this.overlayController.ob(true);
         OverlayController overlayControllerVar = this.overlayController;
         LayoutParams attributes = overlayControllerVar.window.getAttributes();
@@ -46,7 +46,7 @@ final class TransparentOverlayController implements t {
         }
     }
 
-    public final void cnH() {
+    public final void close() {
         OverlayController overlayControllerVar = this.overlayController;
         LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {

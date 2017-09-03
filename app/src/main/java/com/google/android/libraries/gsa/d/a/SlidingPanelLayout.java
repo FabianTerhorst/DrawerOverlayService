@@ -395,7 +395,7 @@ public class SlidingPanelLayout extends FrameLayout {
         this.uoI = true;
         this.mIsPageMoving = false;
         if (this.uoH != null) {
-            this.uoH.cnG();
+            this.uoH.open();
         }
     }
 

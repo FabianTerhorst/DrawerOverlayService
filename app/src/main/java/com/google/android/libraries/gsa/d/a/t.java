@@ -7,9 +7,9 @@ interface t {
 
     void cnF();
 
-    void cnG();
+    void open();
 
-    void cnH();
+    void close();
 
     boolean cnI();
 

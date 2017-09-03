@@ -73,7 +73,7 @@ final class g implements t {
         this.overlayController.ob(false);
     }
 
-    public final void cnG() {
+    public final void open() {
         OverlayController overlayControllerVar = this.overlayController;
         PanelState panelStateVar = PanelState.OPEN_AS_DRAWER;//Todo: PanelState.uog was default
         if (overlayControllerVar.panelState != panelStateVar) {
@@ -93,7 +93,7 @@ final class g implements t {
         }
     }
 
-    public final void cnH() {
+    public final void close() {
         OverlayController overlayControllerVar = this.overlayController;
         LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {

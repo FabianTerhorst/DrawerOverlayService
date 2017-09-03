@@ -33,7 +33,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
         this.uov = i3;
     }
 
-    private final void cnJ() {
+    private final void checkCallerId() {
         if (Binder.getCallingUid() != this.uot) {
             //throw new RemoteException("Invalid client");
             throw new RuntimeException("Invalid client");//FIXME: modified, was remote exception and should still be one, realy have to change that
@@ -41,17 +41,17 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     }
 
     public final synchronized void cnK() {
-        cnJ();
+        checkCallerId();
         Message.obtain(this.mainThreadHandler, 3).sendToTarget();
     }
 
     public final synchronized void aL(float f) {
-        cnJ();
+        checkCallerId();
         Message.obtain(this.mainThreadHandler, 4, f).sendToTarget();
     }
 
     public final synchronized void cnL() {
-        cnJ();
+        checkCallerId();
         Message.obtain(this.mainThreadHandler, 5).sendToTarget();
     }
 
@@ -63,7 +63,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     }
 
     public final synchronized void a(Bundle bundle, d dVar) {
-        cnJ();
+        checkCallerId();
         this.overlaysController.handler.removeCallbacks(this);
         Configuration configuration = bundle.getParcelable("configuration");
         boolean z = configuration != null && configuration.orientation == 2;
@@ -73,13 +73,13 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     }
 
     public final synchronized void od(boolean z) {
-        cnJ();
+        checkCallerId();
         Message.obtain(this.mainThreadHandler, 0, 0, 0).sendToTarget();
         this.overlaysController.handler.postDelayed(this, z ? 5000 : 0);
     }
 
     public final synchronized void BJ(int i) {
-        cnJ();
+        checkCallerId();
         this.mainThreadHandler.removeMessages(1);
         if ((i & 2) == 0) {
             this.mainThreadHandler.sendMessageDelayed(Message.obtain(this.mainThreadHandler, 1, i), 100);
@@ -105,17 +105,10 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
                 of(true);
                 this.blh = i2;
                 switch (this.blh) {
-                    case 0:
-                        baseCallbackVar = new BaseCallback();
-                        break;
                     case 1:
                         baseCallbackVar = new MinusOneOverlayCallback(this.overlaysController, this);
                         break;
                     default:
-                        if ((this.blh & 8) != 0) {
-                            baseCallbackVar = new SearchOverlayCallback(this.overlaysController, this);
-                            break;
-                        }
                         baseCallbackVar = new BaseCallback();
                         break;
                 }
@@ -130,13 +123,13 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     }
 
     public final synchronized void fI(int i) {
-        cnJ();
+        checkCallerId();
         this.mainThreadHandler.removeMessages(6);
         Message.obtain(this.mainThreadHandler, 6, 0, i).sendToTarget();
     }
 
     public final synchronized void BK(int i) {
-        cnJ();
+        checkCallerId();
         this.mainThreadHandler.removeMessages(6);
         Message.obtain(this.mainThreadHandler, 6, 1, i).sendToTarget();
     }
@@ -149,7 +142,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     public final synchronized void oe(boolean z) {
         int i = 0;
         synchronized (this) {
-            cnJ();
+            checkCallerId();
             this.mainThreadHandler.removeMessages(7);
             Handler handler = this.mainThreadHandler;
             if (z) {

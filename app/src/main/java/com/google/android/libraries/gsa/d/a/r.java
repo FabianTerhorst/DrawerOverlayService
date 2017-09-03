@@ -8,7 +8,6 @@ import android.util.Property;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -122,8 +121,8 @@ public class r extends FrameLayout {
         if (action == 2 && this.mTouchState == 1) {
             return true;
         }
-        switch (action & 255) {
-            case 0:
+        switch (action & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
                 boolean z;
                 float x = motionEvent.getX();
                 float y = motionEvent.getY();
@@ -150,11 +149,11 @@ public class r extends FrameLayout {
                     break;
                 }
                 break;
-            case 1:
-            case 3:
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
                 resetTouchState();
                 break;
-            case 2:
+            case MotionEvent.ACTION_MOVE:
                 if (this.mActivePointerId != -1) {
                     determineScrollingStart(motionEvent, 1.0f);
                     break;
@@ -180,8 +179,8 @@ public class r extends FrameLayout {
         float x;
         float y;
         int abs;
-        switch (motionEvent.getAction() & 255) {
-            case 0:
+        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
                 boolean z;
                 x = motionEvent.getX();
                 y = motionEvent.getY();
@@ -204,8 +203,8 @@ public class r extends FrameLayout {
                 cnN();
                 this.uoE = x;
                 return true;
-            case 1:
-            case 3:
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
                 if (this.mTouchState != 1) {
                     return true;
                 }
@@ -219,8 +218,9 @@ public class r extends FrameLayout {
                     if (Math.abs(abs) < this.mMinFlingVelocity) {
                         if (abs >= 0) {
                             fv(750);
+                        } else {//Todo: this else was not there initially
+                            closePanel(750);
                         }
-                        closePanel(750);
                     } else {
                         float measuredWidth = ((float) (getMeasuredWidth() / 2)) + (((float) Math.sin((double) ((float) (((double) (Math.min(1.0f, (((float) (abs < 0 ? this.uoC : getMeasuredWidth() - this.uoC)) * 1.0f) / ((float) getMeasuredWidth())) - 0.5f)) * 0.4712389167638204d)))) * ((float) (getMeasuredWidth() / 2)));
                         if (abs > 0) {
@@ -238,13 +238,13 @@ public class r extends FrameLayout {
                 } else {
                     if (this.uoC >= getMeasuredWidth() / 2) {
                         fv(750);
+                    } else {//Todo: this else was not there initially
+                        closePanel(750);
                     }
-                    //closePanel(750);TODO: MOST FIX, this caused the view to close after open, always, not sure how to fix without uncommenting this line
-                    //Without this line the view wont close when its not fully opened and closed then
                 }
                 resetTouchState();
                 return true;
-            case 2:
+            case MotionEvent.ACTION_MOVE:
                 if (this.mTouchState == 1) {
                     abs = motionEvent.findPointerIndex(this.mActivePointerId);
                     if (abs == -1) {

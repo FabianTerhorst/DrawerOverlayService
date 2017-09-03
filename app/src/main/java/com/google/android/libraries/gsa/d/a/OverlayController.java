@@ -139,7 +139,7 @@ public class OverlayController extends DialogOverlayController {
         fI(1);
     }
 
-    public void a(PrintWriter printWriter, String str) {
+    public void dump(PrintWriter printWriter, String str) {
         printWriter.println(new StringBuilder(String.valueOf(str).length() + 25).append(str).append("mWindowShift: ").append(this.mWindowShift).toString());
         printWriter.println(new StringBuilder(String.valueOf(str).length() + 26).append(str).append("mAcceptExternalMove: ").append(this.mAcceptExternalMove).toString());
         String valueOf = String.valueOf(this.panelState);

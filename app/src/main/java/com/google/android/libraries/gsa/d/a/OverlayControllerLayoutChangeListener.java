@@ -7,7 +7,7 @@ import android.view.WindowManager.LayoutParams;
 
 final class OverlayControllerLayoutChangeListener implements OnLayoutChangeListener {
 
-    public final /* synthetic */ OverlayController overlayController;
+    private final OverlayController overlayController;
 
     OverlayControllerLayoutChangeListener(OverlayController overlayControllerVar) {
         this.overlayController = overlayControllerVar;

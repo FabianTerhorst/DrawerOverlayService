@@ -170,7 +170,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
         String valueOf = String.valueOf(overlayControllerVar);
         printWriter.println(new StringBuilder((String.valueOf(str).length() + 8) + String.valueOf(valueOf).length()).append(str).append(" mView: ").append(valueOf).toString());
         if (overlayControllerVar != null) {
-            overlayControllerVar.a(printWriter, String.valueOf(str).concat("  "));
+            overlayControllerVar.dump(printWriter, String.valueOf(str).concat("  "));
         }
     }
 }

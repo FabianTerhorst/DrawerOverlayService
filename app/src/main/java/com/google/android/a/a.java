@@ -7,15 +7,15 @@ import android.os.RemoteException;
 
 public class a implements IInterface {
     public final String bHh;
-    public final IBinder vM;
+    public final IBinder binder;
 
     public a(IBinder iBinder, String str) {
-        this.vM = iBinder;
+        this.binder = iBinder;
         this.bHh = str;
     }
 
     public IBinder asBinder() {
-        return this.vM;
+        return this.binder;
     }
 
     public final Parcel pg() {
@@ -29,7 +29,7 @@ public class a implements IInterface {
         IBinder iBinder;
         Parcel obtain = Parcel.obtain();
         try {
-            iBinder = this.vM;
+            iBinder = this.binder;
             iBinder.transact(i, parcel, obtain, 0);
             obtain.readException();
         } catch (RuntimeException e) {
@@ -88,7 +88,7 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
     public final void b(int i, Parcel parcel) {
         Parcel obtain = Parcel.obtain();
         try {
-            this.vM.transact(i, parcel, obtain, 0);
+            this.binder.transact(i, parcel, obtain, 0);
             obtain.readException();
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -101,7 +101,7 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
     //Todo: different from source
     public final void c(int i, Parcel parcel) {
         try {
-            this.vM.transact(i, parcel, null, 1);
+            this.binder.transact(i, parcel, null, 1);
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {

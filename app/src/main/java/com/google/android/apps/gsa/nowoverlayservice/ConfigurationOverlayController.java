@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build.VERSION;
+
 import com.google.android.libraries.gsa.d.a.OverlayController;
 import com.google.android.libraries.gsa.d.a.OverlaysController;
 import com.google.android.libraries.gsa.d.a.v;
@@ -11,7 +12,7 @@ import javax.annotation.Nullable;
 
 public final class ConfigurationOverlayController extends OverlaysController {
 
-    public final Context mContext;
+    private final Context mContext;
 
     public ConfigurationOverlayController(Service service) {
         super(service);

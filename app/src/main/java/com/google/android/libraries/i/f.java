@@ -5,6 +5,7 @@ import android.os.Parcel;
 import com.google.android.a.a;
 
 public final class f extends a implements d {
+
     f(IBinder iBinder) {
         super(iBinder, "com.google.android.libraries.launcherclient.ILauncherOverlayCallback");
     }

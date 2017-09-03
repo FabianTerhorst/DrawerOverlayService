@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 public class FitsSystemWindowsNotifierFrameLayout extends FrameLayout {
+
     public p iGw;
 
     public FitsSystemWindowsNotifierFrameLayout(Context context) {

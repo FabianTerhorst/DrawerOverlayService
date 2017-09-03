@@ -55,10 +55,10 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
         Message.obtain(this.mainThreadHandler, 5).sendToTarget();
     }
 
-    public final synchronized void a(LayoutParams layoutParams, d dVar, int i) {
+    public final synchronized void a(LayoutParams layoutParams, d dVar, int clientOptions) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("layout_params", layoutParams);
-        bundle.putInt("client_options", i);
+        bundle.putInt("client_options", clientOptions);
         a(bundle, dVar);
     }
 

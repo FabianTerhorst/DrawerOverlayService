@@ -1,12 +1,10 @@
 package io.fabianterhorst.launcheroverlay;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.libraries.launcherclient.LauncherClient;
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         launcherClient = new LauncherClient(this, callbacksAdapter, "io.fabianterhorst.launcheroverlay", true);
 
         // Set up view pager starting at index 1
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager()));
         viewPager.setCurrentItem(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

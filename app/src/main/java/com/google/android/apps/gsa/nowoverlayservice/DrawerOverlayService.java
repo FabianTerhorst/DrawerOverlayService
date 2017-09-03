@@ -2,6 +2,7 @@ package com.google.android.apps.gsa.nowoverlayservice;
 
 import android.content.Intent;
 import android.os.IBinder;
+
 import com.google.android.apps.gsa.shared.t.BaseService;
 import com.google.android.libraries.gsa.d.a.OverlaysController;
 
@@ -9,6 +10,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
 public class DrawerOverlayService extends BaseService {
+
     public OverlaysController overlaysController;
 
     public void onCreate() {

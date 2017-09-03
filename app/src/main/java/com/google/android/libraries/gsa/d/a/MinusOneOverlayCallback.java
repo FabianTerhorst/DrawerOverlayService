@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 public final class MinusOneOverlayCallback extends OverlayControllerCallback {
 
-    public final OverlaysController overlaysController;
+    private final OverlaysController overlaysController;
 
     public MinusOneOverlayCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar) {
         super(overlayControllerBinderVar, 3);

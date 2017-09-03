@@ -8,9 +8,9 @@ import android.view.animation.Interpolator;
 
 final class SlidingPanelLayoutInterpolator extends AnimatorListenerAdapter implements Interpolator {
 
-    public ObjectAnimator mAnimator;
-    public int mFinalX;
-    public final SlidingPanelLayout slidingPanelLayout;
+    private ObjectAnimator mAnimator;
+    int mFinalX;
+    private final SlidingPanelLayout slidingPanelLayout;
 
     public SlidingPanelLayoutInterpolator(SlidingPanelLayout slidingPanelLayoutVar) {
         this.slidingPanelLayout = slidingPanelLayoutVar;

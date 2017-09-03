@@ -4,7 +4,8 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 public final class OverlayControllerSlidingPanelLayout extends SlidingPanelLayout {
-    public OverlayController overlayController;
+
+    private final OverlayController overlayController;
 
     public OverlayControllerSlidingPanelLayout(OverlayController overlayControllerVar) {
         super(overlayControllerVar);
@@ -46,9 +47,6 @@ public final class OverlayControllerSlidingPanelLayout extends SlidingPanelLayou
     }
 
     protected final boolean fitSystemWindows(Rect rect) {
-        if (this.overlayController.unZ) {
-            return super.fitSystemWindows(rect);
-        }
-        return true;
+        return !this.overlayController.unZ || super.fitSystemWindows(rect);
     }
 }

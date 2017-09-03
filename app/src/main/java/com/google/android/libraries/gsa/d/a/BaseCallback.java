@@ -5,6 +5,7 @@ import android.os.Message;
 import java.io.PrintWriter;
 
 class BaseCallback implements Callback {
+
     BaseCallback() {
     }
 

@@ -15,15 +15,15 @@ import com.google.android.libraries.i.d;
 
 final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder implements Runnable {
 
-    public int mOptions = 0;
-    public final String mPackageName;
-    public final /* synthetic */ OverlaysController overlaysController;
-    public final int mCallerUid;
-    public final int mServerVersion;
-    public final int mClientVersion;
-    public BaseCallback baseCallback = new BaseCallback();
-    public Handler mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
-    public boolean mLastAttachWasLandscape;
+    int mOptions = 0;
+    final String mPackageName;
+    private final OverlaysController overlaysController;
+    final int mCallerUid;
+    final int mServerVersion;
+    final int mClientVersion;
+    BaseCallback baseCallback = new BaseCallback();
+    private Handler mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
+    boolean mLastAttachWasLandscape;
 
     public OverlayControllerBinder(OverlaysController overlaysControllerVar, int callerUid, String packageName, int serverVersion, int clientVersion) {
         this.overlaysController = overlaysControllerVar;

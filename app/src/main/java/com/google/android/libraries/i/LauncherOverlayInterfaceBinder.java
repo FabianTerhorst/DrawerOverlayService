@@ -13,6 +13,7 @@ import com.google.android.a.c;
 import com.google.android.libraries.material.progress.u;
 
 public abstract class LauncherOverlayInterfaceBinder extends LauncherOverlayBinder implements a {
+
     public LauncherOverlayInterfaceBinder() {
         attachInterface(this, "com.google.android.libraries.launcherclient.ILauncherOverlay");
     }

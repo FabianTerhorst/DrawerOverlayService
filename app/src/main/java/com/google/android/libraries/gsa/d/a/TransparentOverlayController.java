@@ -6,7 +6,7 @@ import android.view.WindowManager.LayoutParams;
 
 final class TransparentOverlayController implements t {
 
-    public final /* synthetic */ OverlayController overlayController;
+    private final OverlayController overlayController;
 
     TransparentOverlayController(OverlayController overlayControllerVar) {
         this.overlayController = overlayControllerVar;

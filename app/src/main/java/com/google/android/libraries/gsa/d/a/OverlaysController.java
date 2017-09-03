@@ -131,10 +131,6 @@ public abstract class OverlaysController {
         return new v();
     }
 
-    public IServiceHolder getServiceHolder() {
-        return new IServiceHolder();
-    }
-
     //Todo: maybe remove
     public int Hx() {
         return 24;

@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.os.Build.VERSION;
 /*import com.google.android.apps.gsa.inject.a;
 import com.google.android.apps.gsa.shared.util.OverlaysController.e;*/
-import com.google.android.libraries.gsa.d.a.IServiceHolder;
 import com.google.android.libraries.gsa.d.a.OverlayController;
 import com.google.android.libraries.gsa.d.a.OverlaysController;
 import com.google.android.libraries.gsa.d.a.v;
@@ -32,10 +31,6 @@ public final class ConfigurationOverlayController extends OverlaysController {
             context = context.createConfigurationContext(configuration);
         }
         return new Overlay(context, i, i2, z, z2);
-    }
-
-    public final IServiceHolder getServiceHolder() {
-        return new ServiceHolder(this.mContext);
     }
 
     //Todo: was protected, and return modified

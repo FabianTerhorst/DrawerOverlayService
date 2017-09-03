@@ -120,7 +120,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                 if (this.overlayController == null) {
                     return true;
                 }
-                this.overlayController.BJ(((Integer) message.obj).intValue());
+                this.overlayController.BJ((Integer) message.obj);
                 return true;
             case 2:
                 if (this.overlayController == null) {

@@ -65,7 +65,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     public final synchronized void a(Bundle bundle, d dVar) {
         cnJ();
         this.overlaysController.handler.removeCallbacks(this);
-        Configuration configuration = (Configuration) bundle.getParcelable("configuration");
+        Configuration configuration = bundle.getParcelable("configuration");
         boolean z = configuration != null && configuration.orientation == 2;
         this.uoy = z;
         BL(bundle.getInt("client_options", 7));
@@ -93,7 +93,6 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     }
 
     private final synchronized void BL(int i) {
-        boolean z = true;
         synchronized (this) {
             int i2 = i & 15;
             if ((i2 & 1) != 0) {
@@ -117,14 +116,8 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
                             baseCallbackVar = new SearchOverlayCallback(this.overlaysController, this);
                             break;
                         }
-                        OverlaysController overlaysControllerVar = this.overlaysController;
-                        boolean z2 = (this.blh & 4) != 0;
-                        if ((this.blh & 2) == 0) {
-                            z = false;
-                        }
-                        baseCallbackVar = new ApiServiceCallback(overlaysControllerVar, this, z2, z);
+                        baseCallbackVar = new BaseCallback();
                         break;
-                    //break;Todo: modified, unreachable statement
                 }
                 this.baseCallback = baseCallbackVar;
                 this.mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);

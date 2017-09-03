@@ -6,11 +6,13 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.view.WindowManager.LayoutParams;
+
+import com.google.android.a.LauncherOverlayBinder;
 import com.google.android.a.c;
 //import com.google.android.gms.dynamite.descriptors.com.google.android.gms.ads.dynamite.ModuleDescriptor;
 import com.google.android.libraries.material.progress.u;
 
-public abstract class b extends com.google.android.a.b implements a {
+public abstract class b extends LauncherOverlayBinder implements a {
     public b() {
         attachInterface(this, "com.google.android.libraries.launcherclient.ILauncherOverlay");
     }

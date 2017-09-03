@@ -14,9 +14,9 @@ public final class OverlayControllerSlidingPanelLayout extends SlidingPanelLayou
     protected final void determineScrollingStart(MotionEvent motionEvent, float f) {
         Object obj = 1;
         if (motionEvent.findPointerIndex(this.mActivePointerId) != -1) {
-            float x = motionEvent.getX() - this.bdZ;
+            float x = motionEvent.getX() - this.mDownX;
             float abs = Math.abs(x);
-            float abs2 = Math.abs(motionEvent.getY() - this.bea);
+            float abs2 = Math.abs(motionEvent.getY() - this.mDownY);
             if (Float.compare(abs, 0.0f) != 0) {
                 abs = (float) Math.atan((double) (abs2 / abs));
                 Object obj2;
@@ -27,7 +27,7 @@ public final class OverlayControllerSlidingPanelLayout extends SlidingPanelLayou
                 } else {
                     obj2 = null;
                 }
-                if (!this.uoI || this.mIsPageMoving) {
+                if (!this.mIsPanelOpen || this.mIsPageMoving) {
                     obj = null;
                 }
                 if (obj != null && obj2 != null) {//TODO: different from source

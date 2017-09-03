@@ -4,10 +4,10 @@ import android.os.Build;
 import android.util.Log;
 import android.view.WindowManager.LayoutParams;
 
-final class g implements t {
+final class OverlayControllerStateChanger implements t {
     public final /* synthetic */ OverlayController overlayController;
 
-    g(OverlayController overlayControllerVar) {
+    OverlayControllerStateChanger(OverlayController overlayControllerVar) {
         this.overlayController = overlayControllerVar;
     }
 
@@ -103,7 +103,7 @@ final class g implements t {
                 overlayControllerVar.window.setAttributes(attributes);
             }
         } else {
-            attributes.x = overlayControllerVar.unO;
+            attributes.x = overlayControllerVar.mWindowShift;
             attributes.flags |= 512;
             overlayControllerVar.unZ = false;
             overlayControllerVar.window.setAttributes(attributes);

@@ -12,17 +12,17 @@ public class OverlayController extends DialogOverlayController {
 
     public boolean mIsRtl;
     public long obZ = 0;
-    public int unO;
+    public int mWindowShift;
     public String unT;
     public SlidingPanelLayout slidingPanelLayout;
-    public t unV = new g(this);
+    public t overlayControllerStateChanger = new OverlayControllerStateChanger(this);
     public FrameLayout unW;
     public int unX = 0;
-    public boolean unY = false;
+    public boolean mAcceptExternalMove = false;
     public boolean unZ = true;
     public com.google.android.libraries.i.d uoa;
     public PanelState panelState = PanelState.CLOSED;
-    public int uoc = 0;
+    public int mActivityStateFlags = 0;
 
     public OverlayController(Context context, int i, int i2) {
         super(context, i, i2);
@@ -51,12 +51,12 @@ public class OverlayController extends DialogOverlayController {
     final void BJ(int i) {
         int i2 = 1;
         int i3 = 0;
-        if (this.uoc != i) {
+        if (this.mActivityStateFlags != i) {
             int i4;
             int i5;
             int i6;
-            int i7 = (this.uoc & 1) != 0 ? 1 : 0;
-            if ((this.uoc & 2) != 0) {
+            int i7 = (this.mActivityStateFlags & 1) != 0 ? 1 : 0;
+            if ((this.mActivityStateFlags & 2) != 0) {
                 i4 = 1;
             } else {
                 i4 = 0;
@@ -82,7 +82,7 @@ public class OverlayController extends DialogOverlayController {
             if (i6 != 0) {
                 i3 = 2;
             }
-            this.uoc = i2 | i3;
+            this.mActivityStateFlags = i2 | i3;
             if (i7 == 0 && i5 != 0) {
                 onStart();
             }
@@ -140,24 +140,24 @@ public class OverlayController extends DialogOverlayController {
     }
 
     public void a(PrintWriter printWriter, String str) {
-        printWriter.println(new StringBuilder(String.valueOf(str).length() + 25).append(str).append("mWindowShift: ").append(this.unO).toString());
-        printWriter.println(new StringBuilder(String.valueOf(str).length() + 26).append(str).append("mAcceptExternalMove: ").append(this.unY).toString());
+        printWriter.println(new StringBuilder(String.valueOf(str).length() + 25).append(str).append("mWindowShift: ").append(this.mWindowShift).toString());
+        printWriter.println(new StringBuilder(String.valueOf(str).length() + 26).append(str).append("mAcceptExternalMove: ").append(this.mAcceptExternalMove).toString());
         String valueOf = String.valueOf(this.panelState);
         printWriter.println(new StringBuilder((String.valueOf(str).length() + 14) + String.valueOf(valueOf).length()).append(str).append("mDrawerState: ").append(valueOf).toString());
-        printWriter.println(new StringBuilder(String.valueOf(str).length() + 32).append(str).append("mActivityStateFlags: ").append(this.uoc).toString());
+        printWriter.println(new StringBuilder(String.valueOf(str).length() + 32).append(str).append("mActivityStateFlags: ").append(this.mActivityStateFlags).toString());
         valueOf = String.valueOf(this.slidingPanelLayout);
         printWriter.println(new StringBuilder((String.valueOf(str).length() + 14) + String.valueOf(valueOf).length()).append(str).append("mWrapperView: ").append(valueOf).toString());
         SlidingPanelLayout slidingPanelLayoutVar = this.slidingPanelLayout;
         String concat = String.valueOf(str).concat("  ");
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 36).append(concat).append("mPanelPositionRatio: ").append(slidingPanelLayoutVar.uoD).toString());
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mDownX: ").append(slidingPanelLayoutVar.bdZ).toString());
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mDownY: ").append(slidingPanelLayoutVar.bea).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 36).append(concat).append("mPanelPositionRatio: ").append(slidingPanelLayoutVar.mPanelPositionRatio).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mDownX: ").append(slidingPanelLayoutVar.mDownX).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mDownY: ").append(slidingPanelLayoutVar.mDownY).toString());
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 29).append(concat).append("mActivePointerId: ").append(slidingPanelLayoutVar.mActivePointerId).toString());
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 24).append(concat).append("mTouchState: ").append(slidingPanelLayoutVar.mTouchState).toString());
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 19).append(concat).append("mIsPanelOpen: ").append(slidingPanelLayoutVar.uoI).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 19).append(concat).append("mIsPanelOpen: ").append(slidingPanelLayoutVar.mIsPanelOpen).toString());
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 20).append(concat).append("mIsPageMoving: ").append(slidingPanelLayoutVar.mIsPageMoving).toString());
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 16).append(concat).append("mSettling: ").append(slidingPanelLayoutVar.uoM).toString());
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 17).append(concat).append("mForceDrag: ").append(slidingPanelLayoutVar.uoJ).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 16).append(concat).append("mSettling: ").append(slidingPanelLayoutVar.mSettling).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 17).append(concat).append("mForceDrag: ").append(slidingPanelLayoutVar.mForceDrag).toString());
     }
 
     public void Hn() {

@@ -65,11 +65,11 @@ abstract class OverlayControllerCallback extends BaseCallback {
                     overlayControllerVar3.windowManager = overlayControllerVar3.window.getWindowManager();
                     Point point = new Point();
                     overlayControllerVar3.windowManager.getDefaultDisplay().getRealSize(point);
-                    overlayControllerVar3.unO = -Math.max(point.x, point.y);
+                    overlayControllerVar3.mWindowShift = -Math.max(point.x, point.y);
                     overlayControllerVar3.slidingPanelLayout = new OverlayControllerSlidingPanelLayout(overlayControllerVar3);
                     overlayControllerVar3.unW = new FrameLayout(overlayControllerVar3);
                     overlayControllerVar3.slidingPanelLayout.el(overlayControllerVar3.unW);
-                    overlayControllerVar3.slidingPanelLayout.uoH = overlayControllerVar3.unV;
+                    overlayControllerVar3.slidingPanelLayout.uoH = overlayControllerVar3.overlayControllerStateChanger;
                     layoutParams.width = -1;
                     layoutParams.height = -1;
                     layoutParams.flags |= 8650752;
@@ -96,7 +96,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                         overlayControllerVar.window.restoreHierarchyState(bundle.getBundle("view_state"));
                         if (bundle.getBoolean("open")) {
                             SlidingPanelLayout slidingPanelLayoutVar = overlayControllerVar.slidingPanelLayout;
-                            slidingPanelLayoutVar.uoD = 1.0f;
+                            slidingPanelLayoutVar.mPanelPositionRatio = 1.0f;
                             slidingPanelLayoutVar.uoC = slidingPanelLayoutVar.getMeasuredWidth();
                             slidingPanelLayoutVar.uoA.setTranslationX(slidingPanelLayoutVar.mIsRtl ? (float) (-slidingPanelLayoutVar.uoC) : (float) slidingPanelLayoutVar.uoC);
                             slidingPanelLayoutVar.cnF();

@@ -56,7 +56,7 @@ final class TransparentOverlayController implements t {
                 overlayControllerVar.window.setAttributes(attributes);
             }
         } else {
-            attributes.x = overlayControllerVar.unO;
+            attributes.x = overlayControllerVar.mWindowShift;
             attributes.flags |= 512;
             overlayControllerVar.unZ = false;
             overlayControllerVar.window.setAttributes(attributes);
@@ -68,7 +68,7 @@ final class TransparentOverlayController implements t {
             overlayControllerVar.panelState = panelStateVar;
             overlayControllerVar.setState(overlayControllerVar.panelState);
         }
-        this.overlayController.slidingPanelLayout.uoH = this.overlayController.unV;
+        this.overlayController.slidingPanelLayout.uoH = this.overlayController.overlayControllerStateChanger;
     }
 
     public final void D(float f) {

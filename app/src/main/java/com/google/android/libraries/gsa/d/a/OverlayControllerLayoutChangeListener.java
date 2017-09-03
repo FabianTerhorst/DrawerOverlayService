@@ -27,7 +27,7 @@ final class OverlayControllerLayoutChangeListener implements OnLayoutChangeListe
                 }
                 return;
             }
-            attributes.x = overlayControllerVar.unO;
+            attributes.x = overlayControllerVar.mWindowShift;
             attributes.flags |= 512;
             overlayControllerVar.unZ = false;
             overlayControllerVar.window.setAttributes(attributes);

@@ -40,9 +40,9 @@ public final class MinusOneOverlayCallback extends OverlayControllerCallback {
                         SlidingPanelLayout slidingPanelLayoutVar = overlayControllerVar.slidingPanelLayout;
                         if (slidingPanelLayoutVar.uoC < slidingPanelLayoutVar.mTouchSlop) {
                             overlayControllerVar.slidingPanelLayout.BM(0);
-                            overlayControllerVar.unY = true;
+                            overlayControllerVar.mAcceptExternalMove = true;
                             overlayControllerVar.unX = 0;
-                            overlayControllerVar.slidingPanelLayout.uoJ = true;
+                            overlayControllerVar.slidingPanelLayout.mForceDrag = true;
                             overlayControllerVar.obZ = when - 30;
                             overlayControllerVar.b(0, overlayControllerVar.unX, overlayControllerVar.obZ);
                             overlayControllerVar.b(2, overlayControllerVar.unX, when);
@@ -55,7 +55,7 @@ public final class MinusOneOverlayCallback extends OverlayControllerCallback {
                     overlayControllerVar = this.overlayController;
                     float floatValue = (float) message.obj;
                     when = message.getWhen();
-                    if (overlayControllerVar.unY) {
+                    if (overlayControllerVar.mAcceptExternalMove) {
                         overlayControllerVar.unX = (int) (floatValue * ((float) overlayControllerVar.slidingPanelLayout.getMeasuredWidth()));
                         overlayControllerVar.b(2, overlayControllerVar.unX, when);
                     }
@@ -65,10 +65,10 @@ public final class MinusOneOverlayCallback extends OverlayControllerCallback {
                 if (this.overlayController != null) {
                     overlayControllerVar = this.overlayController;
                     when = message.getWhen();
-                    if (overlayControllerVar.unY) {
+                    if (overlayControllerVar.mAcceptExternalMove) {
                         overlayControllerVar.b(1, overlayControllerVar.unX, when);
                     }
-                    overlayControllerVar.unY = false;
+                    overlayControllerVar.mAcceptExternalMove = false;
                 }
                 return true;
             default:

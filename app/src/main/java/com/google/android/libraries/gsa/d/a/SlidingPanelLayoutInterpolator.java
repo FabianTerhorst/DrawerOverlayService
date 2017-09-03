@@ -44,14 +44,14 @@ final class SlidingPanelLayoutInterpolator extends AnimatorListenerAdapter imple
         this.mAnimator = null;
         this.slidingPanelLayout.BM(this.mFinalX);
         SlidingPanelLayout slidingPanelLayoutVar = this.slidingPanelLayout;
-        if (slidingPanelLayoutVar.uoM) {
-            slidingPanelLayoutVar.uoM = false;
+        if (slidingPanelLayoutVar.mSettling) {
+            slidingPanelLayoutVar.mSettling = false;
             if (slidingPanelLayoutVar.uoC == 0) {
                 if (SlidingPanelLayout.DEBUG) {
                     Log.d("wo.SlidingPanelLayout", "onPanelClosed");
                 }
                 slidingPanelLayoutVar.cnO();
-                slidingPanelLayoutVar.uoI = false;
+                slidingPanelLayoutVar.mIsPanelOpen = false;
                 slidingPanelLayoutVar.mIsPageMoving = false;
                 if (slidingPanelLayoutVar.uoH != null) {
                     slidingPanelLayoutVar.uoH.close();

@@ -210,7 +210,7 @@ public class OverlayController extends DialogOverlayController {
         return this.panelState == PanelState.OPEN_AS_DRAWER || this.panelState == PanelState.OPEN_AS_LAYER;
     }
 
-    public final void ob(boolean z) {
+    public final void setVisible(boolean z) {
         if (z) {
             this.window.clearFlags(24);
         } else {

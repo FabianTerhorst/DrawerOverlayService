@@ -23,7 +23,7 @@ final class TransparentOverlayController implements t {
     }
 
     public final void open() {
-        this.overlayController.ob(true);
+        this.overlayController.setVisible(true);
         OverlayController overlayControllerVar = this.overlayController;
         LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {
@@ -61,7 +61,7 @@ final class TransparentOverlayController implements t {
             overlayControllerVar.unZ = false;
             overlayControllerVar.window.setAttributes(attributes);
         }
-        this.overlayController.ob(false);
+        this.overlayController.setVisible(false);
         overlayControllerVar = this.overlayController;
         PanelState panelStateVar = PanelState.CLOSED;//Todo: PanelState.uoe was default
         if (overlayControllerVar.panelState != panelStateVar) {

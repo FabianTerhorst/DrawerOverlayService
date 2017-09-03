@@ -42,7 +42,7 @@ final class g implements t {
             overlayControllerVar.panelState = panelStateVar;
             overlayControllerVar.setState(overlayControllerVar.panelState);
         }
-        this.overlayController.ob(true);
+        this.overlayController.setVisible(true);
         overlayControllerVar = this.overlayController;
         LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {
@@ -70,7 +70,7 @@ final class g implements t {
             overlayControllerVar.panelState = panelStateVar;
             overlayControllerVar.setState(overlayControllerVar.panelState);
         }
-        this.overlayController.ob(false);
+        this.overlayController.setVisible(false);
     }
 
     public final void open() {

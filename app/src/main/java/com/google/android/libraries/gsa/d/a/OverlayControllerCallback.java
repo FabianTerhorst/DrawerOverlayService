@@ -89,7 +89,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                     overlayControllerVar3.unS = overlayControllerVar3.window.getDecorView();
                     overlayControllerVar3.windowManager.addView(overlayControllerVar3.unS, overlayControllerVar3.window.getAttributes());
                     overlayControllerVar3.slidingPanelLayout.setSystemUiVisibility(1792);
-                    overlayControllerVar3.ob(false);
+                    overlayControllerVar3.setVisible(false);
                     overlayControllerVar3.window.getDecorView().addOnLayoutChangeListener(new OverlayControllerLayoutChangeListener(overlayControllerVar3));
                     if (bundle != null) {
                         overlayControllerVar = this.overlayController;

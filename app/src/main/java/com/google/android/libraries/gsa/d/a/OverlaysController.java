@@ -16,8 +16,8 @@ import java.util.Arrays;
 
 public abstract class OverlaysController {
 
-    public final Service service;
-    public final SparseArray<OverlayControllerBinder> clients = new SparseArray<>();
+    private final Service service;
+    private final SparseArray<OverlayControllerBinder> clients = new SparseArray<>();
     public final Handler handler = new Handler();
 
     public OverlaysController(Service service) {
@@ -105,8 +105,8 @@ public abstract class OverlaysController {
                 printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mClientVersion: ").append(overlayControllerBinderVar.mClientVersion).toString());
                 String str2 = overlayControllerBinderVar.mPackageName;
                 printWriter.println(new StringBuilder((String.valueOf(str).length() + 14) + String.valueOf(str2).length()).append(str).append("mPackageName: ").append(str2).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 21).append(str).append("mOptions: ").append(overlayControllerBinderVar.blh).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 30).append(str).append("mLastAttachWasLandscape: ").append(overlayControllerBinderVar.uoy).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 21).append(str).append("mOptions: ").append(overlayControllerBinderVar.mOptions).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 30).append(str).append("mLastAttachWasLandscape: ").append(overlayControllerBinderVar.mLastAttachWasLandscape).toString());
                 BaseCallback baseCallbackVar = overlayControllerBinderVar.baseCallback;
                 if (baseCallbackVar != null) {
                     baseCallbackVar.dump(printWriter, str);

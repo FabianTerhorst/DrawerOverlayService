@@ -15,7 +15,7 @@ final class ApiServiceCallback extends BaseCallback {
     public d uoa;
     public final OverlayControllerBinder overlayControllerBinder;
     public final boolean uoo;
-    public a uop;
+    public IServiceHolder serviceHolder;
     public final /* synthetic */ OverlaysController overlaysController;
 
     public ApiServiceCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar, boolean z, boolean z2) {
@@ -59,16 +59,16 @@ final class ApiServiceCallback extends BaseCallback {
             }
             if (z2 != z3) {
                 if (z3) {
-                    if (this.uop == null) {
-                        this.uop = this.overlaysController.Hz();
+                    if (this.serviceHolder == null) {
+                        this.serviceHolder = this.overlaysController.getServiceHolder();
                     }
-                    this.uop.k(this.uoo, this.dDr);
+                    this.serviceHolder.k(this.uoo, this.dDr);
                 } else {
                     if (this.dDr) {
-                        this.uop.bV(false);
+                        this.serviceHolder.bV(false);
                     }
-                    if (this.uop != null) {
-                        this.uop.disconnect();
+                    if (this.serviceHolder != null) {
+                        this.serviceHolder.disconnect();
                     }
                 }
             }
@@ -76,9 +76,9 @@ final class ApiServiceCallback extends BaseCallback {
                 return;
             }
             if (z5) {
-                this.uop.bV(true);
+                this.serviceHolder.bV(true);
             } else {
-                this.uop.bV(false);
+                this.serviceHolder.bV(false);
             }
         }
     }
@@ -139,7 +139,7 @@ final class ApiServiceCallback extends BaseCallback {
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsPrewarm: ").append(this.uoo).toString());
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsHotword: ").append(this.dDr).toString());
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 19).append(concat).append("mState: ").append(this.mState).toString());
-        String valueOf = String.valueOf(this.uop);
+        String valueOf = String.valueOf(this.serviceHolder);
         printWriter.println(new StringBuilder((String.valueOf(concat).length() + 9) + String.valueOf(valueOf).length()).append(concat).append("mClient: ").append(valueOf).toString());
     }
 }

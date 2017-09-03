@@ -131,8 +131,8 @@ public abstract class OverlaysController {
         return new v();
     }
 
-    public a Hz() {
-        return new a();
+    public IServiceHolder getServiceHolder() {
+        return new IServiceHolder();
     }
 
     //Todo: maybe remove

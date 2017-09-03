@@ -1,6 +1,6 @@
 package com.google.android.libraries.gsa.d.a;
 
-public class a {
+public class IServiceHolder {
     public void k(boolean z, boolean z2) {
     }
 

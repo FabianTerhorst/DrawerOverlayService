@@ -18,23 +18,23 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     public int blh = 0;
     public final String mPackageName;
     public final /* synthetic */ OverlaysController overlaysController;
-    public final int uot;
-    public final int uou;
-    public final int uov;
+    public final int mCallerUid;
+    public final int mServerVersion;
+    public final int mClientVersion;
     public BaseCallback baseCallback = new BaseCallback();
     public Handler mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
     public boolean uoy;
 
-    public OverlayControllerBinder(OverlaysController overlaysControllerVar, int i, String str, int i2, int i3) {
+    public OverlayControllerBinder(OverlaysController overlaysControllerVar, int callerUid, String packageName, int serverVersion, int clientVersion) {
         this.overlaysController = overlaysControllerVar;
-        this.uot = i;
-        this.mPackageName = str;
-        this.uou = i2;
-        this.uov = i3;
+        this.mCallerUid = callerUid;
+        this.mPackageName = packageName;
+        this.mServerVersion = serverVersion;
+        this.mClientVersion = clientVersion;
     }
 
     private final void checkCallerId() {
-        if (Binder.getCallingUid() != this.uot) {
+        if (Binder.getCallingUid() != this.mCallerUid) {
             //throw new RemoteException("Invalid client");
             throw new RuntimeException("Invalid client");//FIXME: modified, was remote exception and should still be one, realy have to change that
         }

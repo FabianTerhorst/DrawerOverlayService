@@ -17,7 +17,7 @@ import java.util.Arrays;
 public abstract class OverlaysController {
 
     public final Service service;
-    public final SparseArray<OverlayControllerBinder> uol = new SparseArray<>();
+    public final SparseArray<OverlayControllerBinder> clients = new SparseArray<>();
     public final Handler handler = new Handler();
 
     public OverlaysController(Service service) {
@@ -62,14 +62,14 @@ public abstract class OverlaysController {
                             Log.e("OverlaySController", "Only system apps are allowed to connect");
                             iBinder = null;
                         } else {
-                            iBinder = this.uol.get(port);
-                            if (!(iBinder == null || iBinder.uou == parseInt)) {
+                            iBinder = this.clients.get(port);
+                            if (!(iBinder == null || iBinder.mServerVersion == parseInt)) {
                                 iBinder.destroy();
                                 iBinder = null;
                             }
                             if (iBinder == null) {
                                 iBinder = new OverlayControllerBinder(this, port, host, parseInt, i);
-                                this.uol.put(port, iBinder);
+                                this.clients.put(port, iBinder);
                             }
                         }
                     } catch (NameNotFoundException e3) {
@@ -85,24 +85,24 @@ public abstract class OverlaysController {
     public final synchronized void unUnbind(Intent intent) {
         int port = intent.getData().getPort();
         if (port != -1) {
-            OverlayControllerBinder overlayControllerBinderVar = this.uol.get(port);
+            OverlayControllerBinder overlayControllerBinderVar = this.clients.get(port);
             if (overlayControllerBinderVar != null) {
                 overlayControllerBinderVar.destroy();
             }
-            this.uol.remove(port);
+            this.clients.remove(port);
         }
     }
 
     public final synchronized void dump(PrintWriter printWriter) {
-        printWriter.println("OverlayServiceController, num clients : " + this.uol.size());
-        for (int size = this.uol.size() - 1; size >= 0; size--) {
-            OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.valueAt(size);
+        printWriter.println("OverlayServiceController, num clients : " + this.clients.size());
+        for (int size = this.clients.size() - 1; size >= 0; size--) {
+            OverlayControllerBinder overlayControllerBinderVar = this.clients.valueAt(size);
             if (overlayControllerBinderVar != null) {
                 printWriter.println("  dump of client " + size);
                 String str = "    ";
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 23).append(str).append("mCallerUid: ").append(overlayControllerBinderVar.uot).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mServerVersion: ").append(overlayControllerBinderVar.uou).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mClientVersion: ").append(overlayControllerBinderVar.uov).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 23).append(str).append("mCallerUid: ").append(overlayControllerBinderVar.mCallerUid).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mServerVersion: ").append(overlayControllerBinderVar.mServerVersion).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mClientVersion: ").append(overlayControllerBinderVar.mClientVersion).toString());
                 String str2 = overlayControllerBinderVar.mPackageName;
                 printWriter.println(new StringBuilder((String.valueOf(str).length() + 14) + String.valueOf(str2).length()).append(str).append("mPackageName: ").append(str2).toString());
                 printWriter.println(new StringBuilder(String.valueOf(str).length() + 21).append(str).append("mOptions: ").append(overlayControllerBinderVar.blh).toString());
@@ -118,13 +118,13 @@ public abstract class OverlaysController {
     }
 
     public final synchronized void onDestroy() {
-        for (int size = this.uol.size() - 1; size >= 0; size--) {
-            OverlayControllerBinder overlayControllerBinderVar = this.uol.valueAt(size);
+        for (int size = this.clients.size() - 1; size >= 0; size--) {
+            OverlayControllerBinder overlayControllerBinderVar = this.clients.valueAt(size);
             if (overlayControllerBinderVar != null) {
                 overlayControllerBinderVar.destroy();
             }
         }
-        this.uol.clear();
+        this.clients.clear();
     }
 
     public v HA() {

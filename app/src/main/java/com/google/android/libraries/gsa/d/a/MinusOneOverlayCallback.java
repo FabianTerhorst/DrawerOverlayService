@@ -11,13 +11,13 @@ public final class MinusOneOverlayCallback extends OverlayControllerCallback {
 
     public final OverlaysController overlaysController;
 
-    public MinusOneOverlayCallback(OverlaysController overlaysControllerVar, p pVar) {
-        super(pVar, 3);
+    public MinusOneOverlayCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar) {
+        super(overlayControllerBinderVar, 3);
         this.overlaysController = overlaysControllerVar;
     }
 
     final OverlayController c(Configuration configuration) {
-        return this.overlaysController.a(configuration, this.uon.uou, this.uon.uov, true, true);
+        return this.overlaysController.a(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, true, true);
     }
 
     public final void a(PrintWriter printWriter, String str) {

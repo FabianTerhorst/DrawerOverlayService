@@ -13,14 +13,14 @@ final class ApiServiceCallback extends BaseCallback {
     public final boolean dDr;
     public int mState = 0;
     public d uoa;
-    public final p uon;
+    public final OverlayControllerBinder overlayControllerBinder;
     public final boolean uoo;
     public a uop;
     public final /* synthetic */ OverlaysController overlaysController;
 
-    public ApiServiceCallback(OverlaysController overlaysControllerVar, p pVar, boolean z, boolean z2) {
+    public ApiServiceCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar, boolean z, boolean z2) {
         this.overlaysController = overlaysControllerVar;
-        this.uon = pVar;
+        this.overlayControllerBinder = overlayControllerBinderVar;
         this.uoo = z;
         this.dDr = z2;
     }
@@ -101,7 +101,7 @@ final class ApiServiceCallback extends BaseCallback {
                 if (this.uoo) {
                     i |= 4;
                 }
-                this.uon.a(this.uoa, i);
+                this.overlayControllerBinder.a(this.uoa, i);
                 return true;
             case 1:
                 ai(2, (((Integer) message.obj).intValue() & 2) != 0);
@@ -109,7 +109,7 @@ final class ApiServiceCallback extends BaseCallback {
             case 2:
                 ai(7, false);
                 if (message.arg1 == 0) {
-                    this.uon.a(this.uoa, 0);
+                    this.overlayControllerBinder.a(this.uoa, 0);
                 }
                 this.uoa = null;
                 return true;

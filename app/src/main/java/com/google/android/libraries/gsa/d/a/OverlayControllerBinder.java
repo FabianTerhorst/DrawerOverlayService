@@ -9,10 +9,12 @@ import android.os.Message;
 import android.util.Log;
 import android.util.Pair;
 import android.view.WindowManager.LayoutParams;
-import com.google.android.libraries.i.b;
+
+import com.google.android.libraries.i.LauncherOverlayInterfaceBinder;
 import com.google.android.libraries.i.d;
 
-final class p extends b implements Runnable {
+final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder implements Runnable {
+
     public int blh = 0;
     public final String mPackageName;
     public final /* synthetic */ OverlaysController overlaysController;
@@ -23,7 +25,7 @@ final class p extends b implements Runnable {
     public Handler mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
     public boolean uoy;
 
-    public p(OverlaysController overlaysControllerVar, int i, String str, int i2, int i3) {
+    public OverlayControllerBinder(OverlaysController overlaysControllerVar, int i, String str, int i2, int i3) {
         this.overlaysController = overlaysControllerVar;
         this.uot = i;
         this.mPackageName = str;

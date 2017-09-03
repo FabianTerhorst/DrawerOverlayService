@@ -17,14 +17,14 @@ import java.io.PrintWriter;
 
 abstract class OverlayControllerCallback extends BaseCallback {
 
-    public final p uon;
+    public final OverlayControllerBinder overlayControllerBinder;
     public final int uor;
     public OverlayController overlayController;
 
     abstract OverlayController c(Configuration configuration);
 
-    public OverlayControllerCallback(p pVar, int i) {
-        this.uon = pVar;
+    public OverlayControllerCallback(OverlayControllerBinder overlayControllerBinderVar, int i) {
+        this.overlayControllerBinder = overlayControllerBinderVar;
         this.uor = i;
     }
 
@@ -57,7 +57,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                 try {
                     int i;
                     OverlayController overlayControllerVar3 = this.overlayController;
-                    String str = this.uon.mPackageName;
+                    String str = this.overlayControllerBinder.mPackageName;
                     Bundle bundle3 = (Bundle) pair.first;
                     overlayControllerVar3.mIsRtl = SlidingPanelLayout.isRtl(overlayControllerVar3.getResources());
                     overlayControllerVar3.unT = str;
@@ -106,7 +106,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                     overlayControllerVar2 = this.overlayController;
                     overlayControllerVar2.uoa = (com.google.android.libraries.i.d) pair.second;
                     overlayControllerVar2.bP(true);
-                    this.uon.a((com.google.android.libraries.i.d) pair.second, this.uor);
+                    this.overlayControllerBinder.a((com.google.android.libraries.i.d) pair.second, this.uor);
                     return true;
                 } catch (Throwable e) {
                     Log.d("OverlaySController", "Error creating overlay window", e);
@@ -131,7 +131,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                 if (message.arg1 != 0) {
                     return true;
                 }
-                this.uon.a(cnC, 0);
+                this.overlayControllerBinder.a(cnC, 0);
                 return true;
             case u.uKQ /*6*/:
                 if (this.overlayController == null) {

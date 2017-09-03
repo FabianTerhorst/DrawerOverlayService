@@ -62,13 +62,13 @@ public abstract class OverlaysController {
                             Log.e("OverlaySController", "Only system apps are allowed to connect");
                             iBinder = null;
                         } else {
-                            iBinder = (p) this.uol.get(port);
-                            if (!(iBinder == null || ((p) iBinder).uou == parseInt)) {
-                                ((p) iBinder).destroy();
+                            iBinder = (OverlayControllerBinder) this.uol.get(port);
+                            if (!(iBinder == null || ((OverlayControllerBinder) iBinder).uou == parseInt)) {
+                                ((OverlayControllerBinder) iBinder).destroy();
                                 iBinder = null;
                             }
                             if (iBinder == null) {
-                                iBinder = new p(this, port, host, parseInt, i);
+                                iBinder = new OverlayControllerBinder(this, port, host, parseInt, i);
                                 this.uol.put(port, iBinder);
                             }
                         }
@@ -85,9 +85,9 @@ public abstract class OverlaysController {
     public final synchronized void bR(Intent intent) {
         int port = intent.getData().getPort();
         if (port != -1) {
-            p pVar = (p) this.uol.get(port);
-            if (pVar != null) {
-                pVar.destroy();
+            OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.get(port);
+            if (overlayControllerBinderVar != null) {
+                overlayControllerBinderVar.destroy();
             }
             this.uol.remove(port);
         }
@@ -96,18 +96,18 @@ public abstract class OverlaysController {
     public final synchronized void a(PrintWriter printWriter) {
         printWriter.println("OverlayServiceController, num clients : " + this.uol.size());
         for (int size = this.uol.size() - 1; size >= 0; size--) {
-            p pVar = (p) this.uol.valueAt(size);
-            if (pVar != null) {
+            OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.valueAt(size);
+            if (overlayControllerBinderVar != null) {
                 printWriter.println("  dump of client " + size);
                 String str = "    ";
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 23).append(str).append("mCallerUid: ").append(pVar.uot).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mServerVersion: ").append(pVar.uou).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mClientVersion: ").append(pVar.uov).toString());
-                String str2 = pVar.mPackageName;
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 23).append(str).append("mCallerUid: ").append(overlayControllerBinderVar.uot).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mServerVersion: ").append(overlayControllerBinderVar.uou).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 27).append(str).append("mClientVersion: ").append(overlayControllerBinderVar.uov).toString());
+                String str2 = overlayControllerBinderVar.mPackageName;
                 printWriter.println(new StringBuilder((String.valueOf(str).length() + 14) + String.valueOf(str2).length()).append(str).append("mPackageName: ").append(str2).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 21).append(str).append("mOptions: ").append(pVar.blh).toString());
-                printWriter.println(new StringBuilder(String.valueOf(str).length() + 30).append(str).append("mLastAttachWasLandscape: ").append(pVar.uoy).toString());
-                BaseCallback baseCallbackVar = pVar.baseCallback;
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 21).append(str).append("mOptions: ").append(overlayControllerBinderVar.blh).toString());
+                printWriter.println(new StringBuilder(String.valueOf(str).length() + 30).append(str).append("mLastAttachWasLandscape: ").append(overlayControllerBinderVar.uoy).toString());
+                BaseCallback baseCallbackVar = overlayControllerBinderVar.baseCallback;
                 if (baseCallbackVar != null) {
                     baseCallbackVar.a(printWriter, str);
                 }
@@ -119,9 +119,9 @@ public abstract class OverlaysController {
 
     public final synchronized void onDestroy() {
         for (int size = this.uol.size() - 1; size >= 0; size--) {
-            p pVar = (p) this.uol.valueAt(size);
-            if (pVar != null) {
-                pVar.destroy();
+            OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.valueAt(size);
+            if (overlayControllerBinderVar != null) {
+                overlayControllerBinderVar.destroy();
             }
         }
         this.uol.clear();

@@ -10,8 +10,8 @@ public final class SearchOverlayCallback extends OverlayControllerCallback {
 
     public final /* synthetic */ OverlaysController overlaysController;
 
-    public SearchOverlayCallback(OverlaysController overlaysControllerVar, p pVar) {
-        super(pVar, 2);
+    public SearchOverlayCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar) {
+        super(overlayControllerBinderVar, 2);
         this.overlaysController = overlaysControllerVar;
     }
 
@@ -21,7 +21,7 @@ public final class SearchOverlayCallback extends OverlayControllerCallback {
     }
 
     final OverlayController c(Configuration configuration) {
-        return this.overlaysController.a(configuration, this.uon.uou, this.uon.uov, false, true);
+        return this.overlaysController.a(configuration, this.overlayControllerBinder.uou, this.overlayControllerBinder.uov, false, true);
     }
 
     public final boolean handleMessage(Message message) {

@@ -5,88 +5,88 @@ import android.util.Log;
 import android.view.WindowManager.LayoutParams;
 
 final class g implements t {
-    public final /* synthetic */ d uod;
+    public final /* synthetic */ OverlayController overlayController;
 
-    g(d dVar) {
-        this.uod = dVar;
+    g(OverlayController overlayControllerVar) {
+        this.overlayController = overlayControllerVar;
     }
 
     public final void cnE() {
-        d dVar = this.uod;
-        f fVar = f.DRAGGING;//Todo: f.uof was default
-        if (dVar.uob != fVar) {
-            dVar.uob = fVar;
-            dVar.a(dVar.uob);
+        OverlayController overlayControllerVar = this.overlayController;
+        PanelState panelStateVar = PanelState.DRAGGING;//Todo: PanelState.uof was default
+        if (overlayControllerVar.panelState != panelStateVar) {
+            overlayControllerVar.panelState = panelStateVar;
+            overlayControllerVar.a(overlayControllerVar.panelState);
         }
-        dVar = this.uod;
-        LayoutParams attributes = dVar.ark.getAttributes();
+        overlayControllerVar = this.overlayController;
+        LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {
             float f = attributes.alpha;
             attributes.alpha = 1.0f;
             if (f != attributes.alpha) {
-                dVar.ark.setAttributes(attributes);
+                overlayControllerVar.window.setAttributes(attributes);
                 return;
             }
             return;
         }
         attributes.x = 0;
         attributes.flags &= -513;
-        dVar.unZ = true;
-        dVar.ark.setAttributes(attributes);
+        overlayControllerVar.unZ = true;
+        overlayControllerVar.window.setAttributes(attributes);
     }
 
     public final void cnF() {
-        d dVar = this.uod;
-        f fVar = f.DRAGGING;//Todo: f.uof was default
-        if (dVar.uob != fVar) {
-            dVar.uob = fVar;
-            dVar.a(dVar.uob);
+        OverlayController overlayControllerVar = this.overlayController;
+        PanelState panelStateVar = PanelState.DRAGGING;//Todo: PanelState.uof was default
+        if (overlayControllerVar.panelState != panelStateVar) {
+            overlayControllerVar.panelState = panelStateVar;
+            overlayControllerVar.a(overlayControllerVar.panelState);
         }
-        this.uod.ob(true);
-        dVar = this.uod;
-        LayoutParams attributes = dVar.ark.getAttributes();
+        this.overlayController.ob(true);
+        overlayControllerVar = this.overlayController;
+        LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {
             float f = attributes.alpha;
             attributes.alpha = 1.0f;
             if (f != attributes.alpha) {
-                dVar.ark.setAttributes(attributes);
+                overlayControllerVar.window.setAttributes(attributes);
                 return;
             }
             return;
         }
         attributes.x = 0;
         attributes.flags &= -513;
-        dVar.unZ = true;
-        dVar.ark.setAttributes(attributes);
+        overlayControllerVar.unZ = true;
+        overlayControllerVar.window.setAttributes(attributes);
     }
 
     public final void oc(boolean z) {
         if (z) {
-            this.uod.Hn();
+            this.overlayController.Hn();
         }
-        d dVar = this.uod;
-        f fVar = f.DRAGGING;//Todo: f.uof was default
-        if (dVar.uob != fVar) {
-            dVar.uob = fVar;
-            dVar.a(dVar.uob);
+        OverlayController overlayControllerVar = this.overlayController;
+        PanelState panelStateVar = PanelState.DRAGGING;//Todo: PanelState.uof was default
+        if (overlayControllerVar.panelState != panelStateVar) {
+            overlayControllerVar.panelState = panelStateVar;
+            overlayControllerVar.a(overlayControllerVar.panelState);
         }
-        this.uod.ob(false);
+        this.overlayController.ob(false);
     }
 
     public final void cnG() {
-        d dVar = this.uod;
-        f fVar = f.OPEN_AS_DRAWER;//Todo: f.uog was default
-        if (dVar.uob != fVar) {
-            dVar.uob = fVar;
-            dVar.a(dVar.uob);
+        OverlayController overlayControllerVar = this.overlayController;
+        PanelState panelStateVar = PanelState.OPEN_AS_DRAWER;//Todo: PanelState.uog was default
+        if (overlayControllerVar.panelState != panelStateVar) {
+            overlayControllerVar.panelState = panelStateVar;
+            overlayControllerVar.a(overlayControllerVar.panelState);
         }
     }
 
     public final void D(float f) {
-        if (this.uod.uoa != null && !Float.isNaN(f)) {
+        if (this.overlayController.uoa != null && !Float.isNaN(f)) {
             try {
-                this.uod.uoa.aK(f);
-                this.uod.D(f);
+                this.overlayController.uoa.aK(f);
+                this.overlayController.D(f);
             } catch (Throwable e) {
                 Log.e("wo.OverlayController", "Error notfying client", e);
             }
@@ -94,29 +94,29 @@ final class g implements t {
     }
 
     public final void cnH() {
-        d dVar = this.uod;
-        LayoutParams attributes = dVar.ark.getAttributes();
+        OverlayController overlayControllerVar = this.overlayController;
+        LayoutParams attributes = overlayControllerVar.window.getAttributes();
         if (Build.VERSION.SDK_INT >= 26) {
             float f = attributes.alpha;
             attributes.alpha = 0.0f;
             if (f != attributes.alpha) {
-                dVar.ark.setAttributes(attributes);
+                overlayControllerVar.window.setAttributes(attributes);
             }
         } else {
-            attributes.x = dVar.unO;
+            attributes.x = overlayControllerVar.unO;
             attributes.flags |= 512;
-            dVar.unZ = false;
-            dVar.ark.setAttributes(attributes);
+            overlayControllerVar.unZ = false;
+            overlayControllerVar.window.setAttributes(attributes);
         }
-        dVar = this.uod;
-        f fVar = f.CLOSED;//Todo: f.uoe was default
-        if (dVar.uob != fVar) {
-            dVar.uob = fVar;
-            dVar.a(dVar.uob);
+        overlayControllerVar = this.overlayController;
+        PanelState panelStateVar = PanelState.CLOSED;//Todo: PanelState.uoe was default
+        if (overlayControllerVar.panelState != panelStateVar) {
+            overlayControllerVar.panelState = panelStateVar;
+            overlayControllerVar.a(overlayControllerVar.panelState);
         }
     }
 
     public final boolean cnI() {
-        return this.uod.Ho();
+        return this.overlayController.Ho();
     }
 }

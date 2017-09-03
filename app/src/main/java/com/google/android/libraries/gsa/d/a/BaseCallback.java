@@ -4,8 +4,8 @@ import android.os.Handler.Callback;
 import android.os.Message;
 import java.io.PrintWriter;
 
-class m implements Callback {
-    m() {
+class BaseCallback implements Callback {
+    BaseCallback() {
     }
 
     public boolean handleMessage(Message message) {

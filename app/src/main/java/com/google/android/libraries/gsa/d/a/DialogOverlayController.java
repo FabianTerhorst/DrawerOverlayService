@@ -19,22 +19,25 @@ import android.view.Window.Callback;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.accessibility.AccessibilityEvent;
+
 import java.util.HashSet;
 
-public class b extends ContextThemeWrapper implements Callback, c {
-    public WindowManager agw;
-    public final Window ark;
-    public final HashSet unR = new HashSet();
+public class DialogOverlayController extends ContextThemeWrapper implements Callback, DialogListeners {
+
+    public WindowManager windowManager;
+    public final Window window;
+    public final HashSet<DialogInterface> dialogs = new HashSet<>();
     public View unS;
 
-    public b(Context context, int i, int i2) {
-        super(context, i);
-        this.ark = new Dialog(context, i2).getWindow();
-        this.ark.setCallback(this);
-        Window window = this.ark;
+    public DialogOverlayController(Context context, int theme, int dialogTheme) {
+        super(context, theme);
+        Dialog dialog = new Dialog(context, dialogTheme);
+        this.window = dialog.getWindow();
+        this.window.setCallback(this);
+        Window window = this.window;
         if (VERSION.SDK_INT >= 21) {
-            window.setStatusBarColor(0);
-            window.setNavigationBarColor(0);
+            //window.setStatusBarColor(0);
+            //window.setNavigationBarColor(0);
             window.addFlags(Integer.MIN_VALUE);
         } else if (VERSION.SDK_INT >= 19) {
             window.addFlags(201326592);
@@ -46,26 +49,26 @@ public class b extends ContextThemeWrapper implements Callback, c {
 
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
         if (keyEvent.getKeyCode() != 4 || keyEvent.getAction() != 1 || keyEvent.isCanceled()) {
-            return this.ark.superDispatchKeyEvent(keyEvent);
+            return this.window.superDispatchKeyEvent(keyEvent);
         }
         onBackPressed();
         return true;
     }
 
     public boolean dispatchKeyShortcutEvent(KeyEvent keyEvent) {
-        return this.ark.superDispatchKeyShortcutEvent(keyEvent);
+        return this.window.superDispatchKeyShortcutEvent(keyEvent);
     }
 
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return this.ark.superDispatchTouchEvent(motionEvent);
+        return this.window.superDispatchTouchEvent(motionEvent);
     }
 
     public boolean dispatchTrackballEvent(MotionEvent motionEvent) {
-        return this.ark.superDispatchTrackballEvent(motionEvent);
+        return this.window.superDispatchTrackballEvent(motionEvent);
     }
 
     public boolean dispatchGenericMotionEvent(MotionEvent motionEvent) {
-        return this.ark.superDispatchGenericMotionEvent(motionEvent);
+        return this.window.superDispatchGenericMotionEvent(motionEvent);
     }
 
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
@@ -94,7 +97,7 @@ public class b extends ContextThemeWrapper implements Callback, c {
 
     public void onWindowAttributesChanged(LayoutParams layoutParams) {
         if (this.unS != null) {
-            this.agw.updateViewLayout(this.unS, layoutParams);
+            this.windowManager.updateViewLayout(this.unS, layoutParams);
         }
     }
 
@@ -144,17 +147,17 @@ public class b extends ContextThemeWrapper implements Callback, c {
     }
 
     public void onShow(DialogInterface dialogInterface) {
-        this.unR.add(dialogInterface);
+        this.dialogs.add(dialogInterface);
     }
 
     public void onDismiss(DialogInterface dialogInterface) {
-        this.unR.remove(dialogInterface);
+        this.dialogs.remove(dialogInterface);
     }
 
     public final void cnB() {
-        if (!this.unR.isEmpty()) {
-            Dialog[] dialogArr = (Dialog[]) this.unR.toArray(new Dialog[this.unR.size()]);
-            this.unR.clear();
+        if (!this.dialogs.isEmpty()) {
+            Dialog[] dialogArr = (Dialog[]) this.dialogs.toArray(new Dialog[this.dialogs.size()]);
+            this.dialogs.clear();
             for (Dialog dismiss : dialogArr) {
                 dismiss.dismiss();
             }

@@ -12,7 +12,8 @@ import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
-public class r extends FrameLayout {
+public class SlidingPanelLayout extends FrameLayout {
+
     public static boolean DEBUG = true;//Todo: debug const is here
     public static boolean uoK = false;
     public static boolean uoL = false;
@@ -38,14 +39,14 @@ public class r extends FrameLayout {
     public float uoD;
     public float uoE;
     public float uoF;
-    public u uoG;
+    public SlidingPanelLayoutInterpolator slidingPanelLayoutInterpolator;
     public t uoH;
     public boolean uoI = false;
     public boolean uoJ;
     public boolean uoM;
-    public DecelerateInterpolator uoN = new DecelerateInterpolator(3.0f);
+    public DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator(3.0f);
 
-    public r(Context context) {
+    public SlidingPanelLayout(Context context) {
         super(context);
         ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
         this.mTouchSlop = viewConfiguration.getScaledPagingTouchSlop();
@@ -54,7 +55,7 @@ public class r extends FrameLayout {
         this.mFlingThresholdVelocity = (int) (500.0f * this.mDensity);
         this.mMinFlingVelocity = (int) (250.0f * this.mDensity);
         this.mMinSnapVelocity = (int) (1500.0f * this.mDensity);
-        this.uoG = new u(this);
+        this.slidingPanelLayoutInterpolator = new SlidingPanelLayoutInterpolator(this);
         this.mIsRtl = isRtl(getResources());
     }
 
@@ -72,7 +73,7 @@ public class r extends FrameLayout {
         this.uoC = Math.max(Math.min(i, measuredWidth), 0);
         this.uoA.setTranslationX(this.mIsRtl ? (float) (-this.uoC) : (float) this.uoC);
         if (uoK) {
-            this.uoA.setAlpha(Math.max(0.1f, this.uoN.getInterpolation(this.uoD)));
+            this.uoA.setAlpha(Math.max(0.1f, this.decelerateInterpolator.getInterpolation(this.uoD)));
         }
         if (this.uoH != null) {
             this.uoH.D(this.uoD);
@@ -82,7 +83,7 @@ public class r extends FrameLayout {
     final void fv(int i) {
         cnF();
         this.uoM = true;
-        this.uoG.dt(getMeasuredWidth(), i);
+        this.slidingPanelLayoutInterpolator.dt(getMeasuredWidth(), i);
     }
 
     final void closePanel(int i) {
@@ -101,7 +102,7 @@ public class r extends FrameLayout {
             tVar.oc(z);
         }
         this.uoM = true;
-        this.uoG.dt(0, i);
+        this.slidingPanelLayoutInterpolator.dt(0, i);
     }
 
     public final void em(View view) {
@@ -136,8 +137,8 @@ public class r extends FrameLayout {
                 this.mLastMotionX = x;
                 this.mTotalMotionX = 0.0f;
                 this.mActivePointerId = motionEvent.getPointerId(0);
-                action = Math.abs(this.uoG.mFinalX - this.uoC);
-                if (this.uoG.isFinished() || action < this.mTouchSlop / 3) {
+                action = Math.abs(this.slidingPanelLayoutInterpolator.mFinalX - this.uoC);
+                if (this.slidingPanelLayoutInterpolator.isFinished() || action < this.mTouchSlop / 3) {
                     z = true;
                 } else {
                     z = false;
@@ -190,8 +191,8 @@ public class r extends FrameLayout {
                 this.mLastMotionX = x;
                 this.mTotalMotionX = 0.0f;
                 this.mActivePointerId = motionEvent.getPointerId(0);
-                abs = Math.abs(this.uoG.mFinalX - this.uoC);
-                if (this.uoG.isFinished() || abs < this.mTouchSlop / 3) {
+                abs = Math.abs(this.slidingPanelLayoutInterpolator.mFinalX - this.uoC);
+                if (this.slidingPanelLayoutInterpolator.isFinished() || abs < this.mTouchSlop / 3) {
                     z = true;
                 } else {
                     z = false;
@@ -364,7 +365,7 @@ public class r extends FrameLayout {
         this.mTouchState = 1;
         this.mIsPageMoving = true;
         this.uoM = false;
-        this.uoG.cnP();
+        this.slidingPanelLayoutInterpolator.cnP();
         if (uoL) {
             setLayerType(2, null);
         }

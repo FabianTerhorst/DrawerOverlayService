@@ -2,21 +2,24 @@ package com.google.android.libraries.gsa.d.a;
 
 import android.os.Message;
 import android.util.Pair;
+
 import com.google.android.libraries.i.d;
 import com.google.android.libraries.material.progress.u;
+
 import java.io.PrintWriter;
 
-final class l extends m {
+final class ApiServiceCallback extends BaseCallback {
+
     public final boolean dDr;
     public int mState = 0;
     public d uoa;
     public final p uon;
     public final boolean uoo;
     public a uop;
-    public final /* synthetic */ k uoq;
+    public final /* synthetic */ OverlaysController overlaysController;
 
-    public l(k kVar, p pVar, boolean z, boolean z2) {
-        this.uoq = kVar;
+    public ApiServiceCallback(OverlaysController overlaysControllerVar, p pVar, boolean z, boolean z2) {
+        this.overlaysController = overlaysControllerVar;
         this.uon = pVar;
         this.uoo = z;
         this.dDr = z2;
@@ -57,7 +60,7 @@ final class l extends m {
             if (z2 != z3) {
                 if (z3) {
                     if (this.uop == null) {
-                        this.uop = this.uoq.Hz();
+                        this.uop = this.overlaysController.Hz();
                     }
                     this.uop.k(this.uoo, this.dDr);
                 } else {

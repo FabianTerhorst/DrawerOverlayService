@@ -6,13 +6,14 @@ import android.animation.ObjectAnimator;
 import android.util.Log;
 import android.view.animation.Interpolator;
 
-final class u extends AnimatorListenerAdapter implements Interpolator {
+final class SlidingPanelLayoutInterpolator extends AnimatorListenerAdapter implements Interpolator {
+
     public ObjectAnimator mAnimator;
     public int mFinalX;
-    public final r uoO;
+    public final SlidingPanelLayout slidingPanelLayout;
 
-    public u(r rVar) {
-        this.uoO = rVar;
+    public SlidingPanelLayoutInterpolator(SlidingPanelLayout slidingPanelLayoutVar) {
+        this.slidingPanelLayout = slidingPanelLayoutVar;
     }
 
     public final void cnP() {
@@ -26,7 +27,7 @@ final class u extends AnimatorListenerAdapter implements Interpolator {
         cnP();
         this.mFinalX = i;
         if (i2 > 0) {
-            this.mAnimator = ObjectAnimator.ofInt(this.uoO, r.uoz, new int[]{i}).setDuration((long) i2);
+            this.mAnimator = ObjectAnimator.ofInt(this.slidingPanelLayout, SlidingPanelLayout.uoz, new int[]{i}).setDuration((long) i2);
             this.mAnimator.setInterpolator(this);
             this.mAnimator.addListener(this);
             this.mAnimator.start();
@@ -41,22 +42,22 @@ final class u extends AnimatorListenerAdapter implements Interpolator {
 
     public final void onAnimationEnd(Animator animator) {
         this.mAnimator = null;
-        this.uoO.BM(this.mFinalX);
-        r rVar = this.uoO;
-        if (rVar.uoM) {
-            rVar.uoM = false;
-            if (rVar.uoC == 0) {
-                if (r.DEBUG) {
+        this.slidingPanelLayout.BM(this.mFinalX);
+        SlidingPanelLayout slidingPanelLayoutVar = this.slidingPanelLayout;
+        if (slidingPanelLayoutVar.uoM) {
+            slidingPanelLayoutVar.uoM = false;
+            if (slidingPanelLayoutVar.uoC == 0) {
+                if (SlidingPanelLayout.DEBUG) {
                     Log.d("wo.SlidingPanelLayout", "onPanelClosed");
                 }
-                rVar.cnO();
-                rVar.uoI = false;
-                rVar.mIsPageMoving = false;
-                if (rVar.uoH != null) {
-                    rVar.uoH.cnH();
+                slidingPanelLayoutVar.cnO();
+                slidingPanelLayoutVar.uoI = false;
+                slidingPanelLayoutVar.mIsPageMoving = false;
+                if (slidingPanelLayoutVar.uoH != null) {
+                    slidingPanelLayoutVar.uoH.cnH();
                 }
-            } else if (rVar.uoC == rVar.getMeasuredWidth()) {
-                rVar.cnG();
+            } else if (slidingPanelLayoutVar.uoC == slidingPanelLayoutVar.getMeasuredWidth()) {
+                slidingPanelLayoutVar.cnG();
             }
         }
     }

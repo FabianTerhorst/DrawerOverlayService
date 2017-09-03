@@ -10,19 +10,21 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.util.SparseArray;
+
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-public abstract class k {
-    public final Service ndx;
-    public final SparseArray uol = new SparseArray();
-    public final Handler uom = new Handler();
+public abstract class OverlaysController {
 
-    public k(Service service) {
-        this.ndx = service;
+    public final Service service;
+    public final SparseArray uol = new SparseArray();
+    public final Handler handler = new Handler();
+
+    public OverlaysController(Service service) {
+        this.service = service;
     }
 
-    public abstract d a(Configuration configuration, int i, int i2, boolean z, boolean z2);
+    public abstract OverlayController a(Configuration configuration, int i, int i2, boolean z, boolean z2);
 
     public final synchronized IBinder onBind(Intent intent) {
         IBinder iBinder;
@@ -48,21 +50,21 @@ public abstract class k {
                 } catch (Exception e2) {
                     Log.d("OverlaySController", "Client version not available");
                 }
-                String[] packagesForUid = this.ndx.getPackageManager().getPackagesForUid(port);
+                String[] packagesForUid = this.service.getPackageManager().getPackagesForUid(port);
                 String host = data.getHost();
                 if (packagesForUid == null || !Arrays.asList(packagesForUid).contains(host)) {
                     Log.e("OverlaySController", "Invalid uid or package");
                     iBinder = null;
                 } else {
                     try {
-                        int i2 = this.ndx.getPackageManager().getApplicationInfo(host, 0).flags;
+                        int i2 = this.service.getPackageManager().getApplicationInfo(host, 0).flags;
                         if ((i2 & 1) == 0 && (i2 & 2) == 0) {
                             Log.e("OverlaySController", "Only system apps are allowed to connect");
                             iBinder = null;
                         } else {
                             iBinder = (p) this.uol.get(port);
-                            if (!(iBinder == null || ((p)iBinder).uou == parseInt)) {
-                                ((p)iBinder).destroy();
+                            if (!(iBinder == null || ((p) iBinder).uou == parseInt)) {
+                                ((p) iBinder).destroy();
                                 iBinder = null;
                             }
                             if (iBinder == null) {
@@ -105,9 +107,9 @@ public abstract class k {
                 printWriter.println(new StringBuilder((String.valueOf(str).length() + 14) + String.valueOf(str2).length()).append(str).append("mPackageName: ").append(str2).toString());
                 printWriter.println(new StringBuilder(String.valueOf(str).length() + 21).append(str).append("mOptions: ").append(pVar.blh).toString());
                 printWriter.println(new StringBuilder(String.valueOf(str).length() + 30).append(str).append("mLastAttachWasLandscape: ").append(pVar.uoy).toString());
-                m mVar = pVar.uow;
-                if (mVar != null) {
-                    mVar.a(printWriter, str);
+                BaseCallback baseCallbackVar = pVar.baseCallback;
+                if (baseCallbackVar != null) {
+                    baseCallbackVar.a(printWriter, str);
                 }
             } else {
                 printWriter.println("  null client: " + size);
@@ -125,14 +127,6 @@ public abstract class k {
         this.uol.clear();
     }
 
-    public boolean Hw() {
-        return false;
-    }
-
-    public boolean bQ(boolean z) {
-        return false;
-    }
-
     public v HA() {
         return new v();
     }
@@ -141,7 +135,8 @@ public abstract class k {
         return new a();
     }
 
+    //Todo: maybe remove
     public int Hx() {
-        return 0;
+        return 24;
     }
 }

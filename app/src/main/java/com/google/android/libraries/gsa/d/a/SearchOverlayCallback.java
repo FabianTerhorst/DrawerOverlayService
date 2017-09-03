@@ -3,14 +3,16 @@ package com.google.android.libraries.gsa.d.a;
 import android.content.res.Configuration;
 import android.os.Message;
 import android.util.Log;
+
 import java.io.PrintWriter;
 
-public final class q extends n {
-    public final /* synthetic */ k uoq;
+public final class SearchOverlayCallback extends OverlayControllerCallback {
 
-    public q(k kVar, p pVar) {
+    public final /* synthetic */ OverlaysController overlaysController;
+
+    public SearchOverlayCallback(OverlaysController overlaysControllerVar, p pVar) {
         super(pVar, 2);
-        this.uoq = kVar;
+        this.overlaysController = overlaysControllerVar;
     }
 
     public final void a(PrintWriter printWriter, String str) {
@@ -18,8 +20,8 @@ public final class q extends n {
         super.a(printWriter, str);
     }
 
-    final d c(Configuration configuration) {
-        return this.uoq.a(configuration, this.uon.uou, this.uon.uov, false, true);
+    final OverlayController c(Configuration configuration) {
+        return this.overlaysController.a(configuration, this.uon.uou, this.uon.uov, false, true);
     }
 
     public final boolean handleMessage(Message message) {

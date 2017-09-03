@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.os.RemoteException;
 import android.util.Log;
 import android.util.Pair;
 import android.view.WindowManager.LayoutParams;
@@ -16,16 +15,16 @@ import com.google.android.libraries.i.d;
 final class p extends b implements Runnable {
     public int blh = 0;
     public final String mPackageName;
-    public final /* synthetic */ k uoq;
+    public final /* synthetic */ OverlaysController overlaysController;
     public final int uot;
     public final int uou;
     public final int uov;
-    public m uow = new m();
-    public Handler uox = new Handler(Looper.getMainLooper(), this.uow);
+    public BaseCallback baseCallback = new BaseCallback();
+    public Handler mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
     public boolean uoy;
 
-    public p(k kVar, int i, String str, int i2, int i3) {
-        this.uoq = kVar;
+    public p(OverlaysController overlaysControllerVar, int i, String str, int i2, int i3) {
+        this.overlaysController = overlaysControllerVar;
         this.uot = i;
         this.mPackageName = str;
         this.uou = i2;
@@ -41,17 +40,17 @@ final class p extends b implements Runnable {
 
     public final synchronized void cnK() {
         cnJ();
-        Message.obtain(this.uox, 3).sendToTarget();
+        Message.obtain(this.mainThreadHandler, 3).sendToTarget();
     }
 
     public final synchronized void aL(float f) {
         cnJ();
-        Message.obtain(this.uox, 4, Float.valueOf(f)).sendToTarget();
+        Message.obtain(this.mainThreadHandler, 4, f).sendToTarget();
     }
 
     public final synchronized void cnL() {
         cnJ();
-        Message.obtain(this.uox, 5).sendToTarget();
+        Message.obtain(this.mainThreadHandler, 5).sendToTarget();
     }
 
     public final synchronized void a(LayoutParams layoutParams, d dVar, int i) {
@@ -63,27 +62,27 @@ final class p extends b implements Runnable {
 
     public final synchronized void a(Bundle bundle, d dVar) {
         cnJ();
-        this.uoq.uom.removeCallbacks(this);
+        this.overlaysController.handler.removeCallbacks(this);
         Configuration configuration = (Configuration) bundle.getParcelable("configuration");
         boolean z = configuration != null && configuration.orientation == 2;
         this.uoy = z;
         BL(bundle.getInt("client_options", 7));
-        Message.obtain(this.uox, 0, 1, 0, Pair.create(bundle, dVar)).sendToTarget();
+        Message.obtain(this.mainThreadHandler, 0, 1, 0, Pair.create(bundle, dVar)).sendToTarget();
     }
 
     public final synchronized void od(boolean z) {
         cnJ();
-        Message.obtain(this.uox, 0, 0, 0).sendToTarget();
-        this.uoq.uom.postDelayed(this, z ? 5000 : 0);
+        Message.obtain(this.mainThreadHandler, 0, 0, 0).sendToTarget();
+        this.overlaysController.handler.postDelayed(this, z ? 5000 : 0);
     }
 
     public final synchronized void BJ(int i) {
         cnJ();
-        this.uox.removeMessages(1);
+        this.mainThreadHandler.removeMessages(1);
         if ((i & 2) == 0) {
-            this.uox.sendMessageDelayed(Message.obtain(this.uox, 1, Integer.valueOf(i)), 100);
+            this.mainThreadHandler.sendMessageDelayed(Message.obtain(this.mainThreadHandler, 1, i), 100);
         } else {
-            Message.obtain(this.uox, 1, Integer.valueOf(i)).sendToTarget();
+            Message.obtain(this.mainThreadHandler, 1, i).sendToTarget();
         }
     }
 
@@ -99,34 +98,34 @@ final class p extends b implements Runnable {
                 i2 = 1;
             }
             if (this.blh != i2) {
-                m mVar;
-                this.uox.removeCallbacksAndMessages(null);
-                Message.obtain(this.uox, 0, 0, 0).sendToTarget();
+                BaseCallback baseCallbackVar;
+                this.mainThreadHandler.removeCallbacksAndMessages(null);
+                Message.obtain(this.mainThreadHandler, 0, 0, 0).sendToTarget();
                 of(true);
                 this.blh = i2;
                 switch (this.blh) {
                     case 0:
-                        mVar = new m();
+                        baseCallbackVar = new BaseCallback();
                         break;
                     case 1:
-                        mVar = new o(this.uoq, this);
+                        baseCallbackVar = new MinusOneOverlayCallback(this.overlaysController, this);
                         break;
                     default:
-                        if ((this.blh & 8) != 0 && this.uoq.bQ(false)) {
-                            mVar = new q(this.uoq, this);
+                        if ((this.blh & 8) != 0) {
+                            baseCallbackVar = new SearchOverlayCallback(this.overlaysController, this);
                             break;
                         }
-                        k kVar = this.uoq;
+                        OverlaysController overlaysControllerVar = this.overlaysController;
                         boolean z2 = (this.blh & 4) != 0;
                         if ((this.blh & 2) == 0) {
                             z = false;
                         }
-                        mVar = new l(kVar, this, z2, z);
+                        baseCallbackVar = new ApiServiceCallback(overlaysControllerVar, this, z2, z);
                         break;
                     //break;Todo: modified, unreachable statement
                 }
-                this.uow = mVar;
-                this.uox = new Handler(Looper.getMainLooper(), this.uow);
+                this.baseCallback = baseCallbackVar;
+                this.mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
             }
         }
     }
@@ -137,33 +136,27 @@ final class p extends b implements Runnable {
 
     public final synchronized void fI(int i) {
         cnJ();
-        this.uox.removeMessages(6);
-        Message.obtain(this.uox, 6, 0, i).sendToTarget();
+        this.mainThreadHandler.removeMessages(6);
+        Message.obtain(this.mainThreadHandler, 6, 0, i).sendToTarget();
     }
 
     public final synchronized void BK(int i) {
         cnJ();
-        this.uox.removeMessages(6);
-        Message.obtain(this.uox, 6, 1, i).sendToTarget();
+        this.mainThreadHandler.removeMessages(6);
+        Message.obtain(this.mainThreadHandler, 6, 1, i).sendToTarget();
     }
 
     public final synchronized boolean a(byte[] bArr, Bundle bundle) {
-        boolean z;
-        if (this.uoq.bQ(this.uoy)) {
-            Message.obtain(this.uox, 8, new h(bArr, bundle)).sendToTarget();
-            z = true;
-        } else {
-            z = false;
-        }
-        return z;
+        Message.obtain(this.mainThreadHandler, 8, new h(bArr, bundle)).sendToTarget();
+        return true;
     }
 
     public final synchronized void oe(boolean z) {
         int i = 0;
         synchronized (this) {
             cnJ();
-            this.uox.removeMessages(7);
-            Handler handler = this.uox;
+            this.mainThreadHandler.removeMessages(7);
+            Handler handler = this.mainThreadHandler;
             if (z) {
                 i = 1;
             }
@@ -172,15 +165,16 @@ final class p extends b implements Runnable {
     }
 
     public final String HB() {
-        return this.uoq.HA().HB();
+        return this.overlaysController.HA().HB();
     }
 
     public final boolean HC() {
-        return this.uoq.HA().HC();
+        return this.overlaysController.HA().HC();
     }
 
+    //Todo: always true, remove
     public final boolean cnM() {
-        return this.uoq.Hw();
+        return true;
     }
 
     public final void run() {
@@ -188,8 +182,8 @@ final class p extends b implements Runnable {
     }
 
     final void destroy() {
-        synchronized (this.uoq) {
-            this.uoq.uom.removeCallbacks(this);
+        synchronized (this.overlaysController) {
+            this.overlaysController.handler.removeCallbacks(this);
             of(false);
         }
     }
@@ -197,7 +191,7 @@ final class p extends b implements Runnable {
     private final synchronized void of(boolean z) {
         int i = 0;
         synchronized (this) {
-            Handler handler = this.uox;
+            Handler handler = this.mainThreadHandler;
             if (z) {
                 i = 1;
             }
@@ -208,7 +202,7 @@ final class p extends b implements Runnable {
     final void a(d dVar, int i) {
         if (dVar != null) {
             try {
-                dVar.BI(this.uoq.Hx() | i);
+                dVar.BI(this.overlaysController.Hx() | i);
             } catch (Throwable e) {
                 Log.e("OverlaySController", "Failed to send status update", e);
             }

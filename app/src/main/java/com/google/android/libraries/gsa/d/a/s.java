@@ -8,10 +8,10 @@ final class s extends Property {
     }
 
     public final /* synthetic */ Object get(Object obj) {
-        return Integer.valueOf(((r) obj).uoC);
+        return ((SlidingPanelLayout) obj).uoC;
     }
 
     public final /* synthetic */ void set(Object obj, Object obj2) {
-        ((r) obj).BM(((Integer) obj2).intValue());
+        ((SlidingPanelLayout) obj).BM((Integer) obj2);
     }
 }

@@ -3,12 +3,12 @@ package com.google.android.libraries.gsa.d.a;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-public final class j extends r {
-    public d uok;
+public final class OverlayControllerSlidingPanelLayout extends SlidingPanelLayout {
+    public OverlayController overlayController;
 
-    public j(d dVar) {
-        super(dVar);
-        this.uok = dVar;
+    public OverlayControllerSlidingPanelLayout(OverlayController overlayControllerVar) {
+        super(overlayControllerVar);
+        this.overlayController = overlayControllerVar;
     }
 
     protected final void determineScrollingStart(MotionEvent motionEvent, float f) {
@@ -46,7 +46,7 @@ public final class j extends r {
     }
 
     protected final boolean fitSystemWindows(Rect rect) {
-        if (this.uok.unZ) {
+        if (this.overlayController.unZ) {
             return super.fitSystemWindows(rect);
         }
         return true;

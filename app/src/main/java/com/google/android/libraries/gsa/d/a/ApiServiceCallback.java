@@ -10,19 +10,19 @@ import java.io.PrintWriter;
 
 final class ApiServiceCallback extends BaseCallback {
 
-    public final boolean dDr;
+    public final boolean mSupportsHotword;
     public int mState = 0;
     public d uoa;
     public final OverlayControllerBinder overlayControllerBinder;
-    public final boolean uoo;
+    public final boolean mSupportsPrewarm;
     public IServiceHolder serviceHolder;
     public final /* synthetic */ OverlaysController overlaysController;
 
-    public ApiServiceCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar, boolean z, boolean z2) {
+    public ApiServiceCallback(OverlaysController overlaysControllerVar, OverlayControllerBinder overlayControllerBinderVar, boolean supportsPrewarm, boolean supportsHotword) {
         this.overlaysController = overlaysControllerVar;
         this.overlayControllerBinder = overlayControllerBinderVar;
-        this.uoo = z;
-        this.dDr = z2;
+        this.mSupportsPrewarm = supportsPrewarm;
+        this.mSupportsHotword = supportsHotword;
     }
 
     private final void ai(int i, boolean z) {
@@ -32,7 +32,7 @@ final class ApiServiceCallback extends BaseCallback {
         } else {
             this.mState &= i ^ -1;
         }
-        if (this.dDr || this.uoo) {
+        if (this.mSupportsHotword || this.mSupportsPrewarm) {
             boolean z2;
             boolean z3;
             boolean z4;
@@ -62,9 +62,9 @@ final class ApiServiceCallback extends BaseCallback {
                     if (this.serviceHolder == null) {
                         this.serviceHolder = this.overlaysController.getServiceHolder();
                     }
-                    this.serviceHolder.k(this.uoo, this.dDr);
+                    this.serviceHolder.k(this.mSupportsPrewarm, this.mSupportsHotword);
                 } else {
-                    if (this.dDr) {
+                    if (this.mSupportsHotword) {
                         this.serviceHolder.bV(false);
                     }
                     if (this.serviceHolder != null) {
@@ -91,14 +91,14 @@ final class ApiServiceCallback extends BaseCallback {
                 if (message.arg1 != 1) {
                     return true;
                 }
-                if (this.dDr) {
+                if (this.mSupportsHotword) {
                     ai(4, true);
                 }
                 this.uoa = (d) ((Pair) message.obj).second;
-                if (this.dDr) {
+                if (this.mSupportsHotword) {
                     i = 2;
                 }
-                if (this.uoo) {
+                if (this.mSupportsPrewarm) {
                     i |= 4;
                 }
                 this.overlayControllerBinder.a(this.uoa, i);
@@ -136,8 +136,8 @@ final class ApiServiceCallback extends BaseCallback {
     public final void a(PrintWriter printWriter, String str) {
         printWriter.println(String.valueOf(str).concat("APIServiceCallback"));
         String concat = String.valueOf(str).concat("  ");
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsPrewarm: ").append(this.uoo).toString());
-        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsHotword: ").append(this.dDr).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsPrewarm: ").append(this.mSupportsPrewarm).toString());
+        printWriter.println(new StringBuilder(String.valueOf(concat).length() + 23).append(concat).append("mSupportsHotword: ").append(this.mSupportsHotword).toString());
         printWriter.println(new StringBuilder(String.valueOf(concat).length() + 19).append(concat).append("mState: ").append(this.mState).toString());
         String valueOf = String.valueOf(this.serviceHolder);
         printWriter.println(new StringBuilder((String.valueOf(concat).length() + 9) + String.valueOf(valueOf).length()).append(concat).append("mClient: ").append(valueOf).toString());

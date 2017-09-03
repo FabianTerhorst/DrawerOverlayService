@@ -17,7 +17,7 @@ public class x extends d/* implements dy, a*/ {
     private final Context context;
 
     public x(Context context, int i, int i2, boolean z, boolean z2) {
-        super(context, /*cd.dDp*/R.style.AppTheme2, R.style.AppTheme/*cd.dDo*/);//Todo: fix theme
+        super(context, /*cd.dDp*/R.style.AppTheme2, R.style.AppTheme2/*cd.dDo*/);//Todo: fix theme
         this.context = context;
         /*this.mContext = context;
         this.dzV = i;

@@ -9,7 +9,7 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme2" parent="@android:style/Theme.NoDisplay">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

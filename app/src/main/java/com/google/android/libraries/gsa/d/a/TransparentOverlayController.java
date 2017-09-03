@@ -12,7 +12,7 @@ final class TransparentOverlayController implements t {
         this.overlayController = overlayControllerVar;
     }
 
-    public final void cnE() {
+    public final void drag() {
         Log.d("wo.OverlayController", "Drag event called in transparent mode");
     }
 
@@ -42,7 +42,7 @@ final class TransparentOverlayController implements t {
         PanelState panelStateVar = PanelState.OPEN_AS_LAYER;//Todo: PanelState.uoh was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
     }
 
@@ -66,7 +66,7 @@ final class TransparentOverlayController implements t {
         PanelState panelStateVar = PanelState.CLOSED;//Todo: PanelState.uoe was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
         this.overlayController.slidingPanelLayout.uoH = this.overlayController.unV;
     }

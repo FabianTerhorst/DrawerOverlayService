@@ -373,7 +373,7 @@ public class SlidingPanelLayout extends FrameLayout {
             Log.d("wo.SlidingPanelLayout", "onDragStarted");
         }
         if (this.uoH != null) {
-            this.uoH.cnE();
+            this.uoH.drag();
         }
     }
 

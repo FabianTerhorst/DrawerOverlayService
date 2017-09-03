@@ -218,6 +218,6 @@ public class OverlayController extends DialogOverlayController {
         }
     }
 
-    public void a(PanelState panelStateVar) {
+    public void setState(PanelState panelStateVar) {
     }
 }

@@ -11,12 +11,12 @@ final class g implements t {
         this.overlayController = overlayControllerVar;
     }
 
-    public final void cnE() {
+    public final void drag() {
         OverlayController overlayControllerVar = this.overlayController;
         PanelState panelStateVar = PanelState.DRAGGING;//Todo: PanelState.uof was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
         overlayControllerVar = this.overlayController;
         LayoutParams attributes = overlayControllerVar.window.getAttributes();
@@ -40,7 +40,7 @@ final class g implements t {
         PanelState panelStateVar = PanelState.DRAGGING;//Todo: PanelState.uof was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
         this.overlayController.ob(true);
         overlayControllerVar = this.overlayController;
@@ -68,7 +68,7 @@ final class g implements t {
         PanelState panelStateVar = PanelState.DRAGGING;//Todo: PanelState.uof was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
         this.overlayController.ob(false);
     }
@@ -78,7 +78,7 @@ final class g implements t {
         PanelState panelStateVar = PanelState.OPEN_AS_DRAWER;//Todo: PanelState.uog was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
     }
 
@@ -112,7 +112,7 @@ final class g implements t {
         PanelState panelStateVar = PanelState.CLOSED;//Todo: PanelState.uoe was default
         if (overlayControllerVar.panelState != panelStateVar) {
             overlayControllerVar.panelState = panelStateVar;
-            overlayControllerVar.a(overlayControllerVar.panelState);
+            overlayControllerVar.setState(overlayControllerVar.panelState);
         }
     }
 

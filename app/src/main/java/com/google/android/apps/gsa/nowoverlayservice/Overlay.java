@@ -16,7 +16,7 @@ public class Overlay extends OverlayController {
 
     private final Context context;
 
-    public Overlay(Context context, int i, int i2, boolean z, boolean z2) {
+    public Overlay(Context context, int i, int i2) {
         super(context, R.style.AppTheme, R.style.Theme_SearchNow);
         this.context = context;
     }

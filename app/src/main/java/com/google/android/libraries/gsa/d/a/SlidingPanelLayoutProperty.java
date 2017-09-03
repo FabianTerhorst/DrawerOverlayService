@@ -2,8 +2,8 @@ package com.google.android.libraries.gsa.d.a;
 
 import android.util.Property;
 
-final class s extends Property {
-    s(Class cls, String str) {
+final class SlidingPanelLayoutProperty extends Property {
+    SlidingPanelLayoutProperty(Class cls, String str) {
         super(cls, str);
     }
 

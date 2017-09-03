@@ -17,7 +17,7 @@ public class SlidingPanelLayout extends FrameLayout {
     public static boolean DEBUG = true;//Todo: debug const is here
     public static boolean uoK = false;
     public static boolean uoL = false;
-    public static final Property uoz = new s(Integer.class, "panelX");
+    public static final Property PANEL_X = new SlidingPanelLayoutProperty(Integer.class, "panelX");
     public float bdZ;
     public float bea;
     public int mActivePointerId = -1;

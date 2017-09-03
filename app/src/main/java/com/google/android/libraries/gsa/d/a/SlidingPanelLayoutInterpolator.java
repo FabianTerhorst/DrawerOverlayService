@@ -27,7 +27,7 @@ final class SlidingPanelLayoutInterpolator extends AnimatorListenerAdapter imple
         cnP();
         this.mFinalX = i;
         if (i2 > 0) {
-            this.mAnimator = ObjectAnimator.ofInt(this.slidingPanelLayout, SlidingPanelLayout.uoz, new int[]{i}).setDuration((long) i2);
+            this.mAnimator = ObjectAnimator.ofInt(this.slidingPanelLayout, SlidingPanelLayout.PANEL_X, new int[]{i}).setDuration((long) i2);
             this.mAnimator.setInterpolator(this);
             this.mAnimator.addListener(this);
             this.mAnimator.start();

@@ -82,7 +82,7 @@ public abstract class OverlaysController {
         return iBinder;
     }
 
-    public final synchronized void bR(Intent intent) {
+    public final synchronized void unUnbind(Intent intent) {
         int port = intent.getData().getPort();
         if (port != -1) {
             OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.get(port);
@@ -93,7 +93,7 @@ public abstract class OverlaysController {
         }
     }
 
-    public final synchronized void a(PrintWriter printWriter) {
+    public final synchronized void dump(PrintWriter printWriter) {
         printWriter.println("OverlayServiceController, num clients : " + this.uol.size());
         for (int size = this.uol.size() - 1; size >= 0; size--) {
             OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.valueAt(size);

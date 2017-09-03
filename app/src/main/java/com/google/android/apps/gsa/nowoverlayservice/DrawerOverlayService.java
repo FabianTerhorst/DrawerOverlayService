@@ -9,28 +9,28 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
 public class DrawerOverlayService extends BaseService {
-    public OverlaysController dzU;
+    public OverlaysController overlaysController;
 
     public void onCreate() {
         super.onCreate();
-        this.dzU = new an(this);
+        this.overlaysController = new ConfigurationOverlayController(this);
     }
 
     public void onDestroy() {
-        this.dzU.onDestroy();
+        this.overlaysController.onDestroy();
         super.onDestroy();
     }
 
     public IBinder onBind(Intent intent) {
-        return this.dzU.onBind(intent);
+        return this.overlaysController.onBind(intent);
     }
 
     public boolean onUnbind(Intent intent) {
-        this.dzU.bR(intent);
+        this.overlaysController.unUnbind(intent);
         return false;
     }
 
     protected void dump(FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
-        this.dzU.a(printWriter);
+        this.overlaysController.dump(printWriter);
     }
 }

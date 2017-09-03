@@ -6,7 +6,7 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-public class b extends Binder implements IInterface {
+public class LauncherOverlayBinder extends Binder implements IInterface {
     public IBinder asBinder() {
         return this;
     }

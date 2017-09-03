@@ -4,11 +4,11 @@ import android.os.Build;
 import android.util.Log;
 import android.view.WindowManager.LayoutParams;
 
-final class i implements t {
-    
+final class TransparentOverlayController implements t {
+
     public final /* synthetic */ OverlayController overlayController;
 
-    i(OverlayController overlayControllerVar) {
+    TransparentOverlayController(OverlayController overlayControllerVar) {
         this.overlayController = overlayControllerVar;
     }
 

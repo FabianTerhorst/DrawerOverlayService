@@ -121,7 +121,7 @@ public class OverlayController extends DialogOverlayController {
         if (this.panelState == PanelState.CLOSED) {
             int i3 = (i & 1) != 0 ? 1 : 0;
             if ((i & 2) != 0) {
-                this.slidingPanelLayout.uoH = new i(this);
+                this.slidingPanelLayout.uoH = new TransparentOverlayController(this);
                 i3 = 0;
             }
             SlidingPanelLayout slidingPanelLayoutVar = this.slidingPanelLayout;

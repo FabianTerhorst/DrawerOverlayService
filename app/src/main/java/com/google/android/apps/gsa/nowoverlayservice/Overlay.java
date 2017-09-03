@@ -23,11 +23,11 @@ public class Overlay extends OverlayController {
 
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        this.unW.setFitsSystemWindows(true);
+        this.container.setFitsSystemWindows(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        View rowView = LayoutInflater.from(context).inflate(R.layout.activity_second, this.unW, true);
+        View rowView = LayoutInflater.from(context).inflate(R.layout.activity_second, this.container, true);
         TextView textView = rowView.findViewById(R.id.textView);
         textView.setText("Hello Window");
     }

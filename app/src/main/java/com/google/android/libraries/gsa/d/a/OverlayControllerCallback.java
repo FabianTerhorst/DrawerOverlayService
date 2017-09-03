@@ -52,7 +52,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                     bundle = null;
                 }
                 Pair pair = (Pair) message.obj;
-                LayoutParams layoutParams = (LayoutParams) ((Bundle) pair.first).getParcelable("layout_params");
+                LayoutParams layoutParams = ((Bundle) pair.first).getParcelable("layout_params");
                 this.overlayController = createController((Configuration) ((Bundle) pair.first).getParcelable("configuration"));
                 try {
                     int i;
@@ -60,15 +60,15 @@ abstract class OverlayControllerCallback extends BaseCallback {
                     String str = this.overlayControllerBinder.mPackageName;
                     Bundle bundle3 = (Bundle) pair.first;
                     overlayControllerVar3.mIsRtl = SlidingPanelLayout.isRtl(overlayControllerVar3.getResources());
-                    overlayControllerVar3.unT = str;
+                    overlayControllerVar3.mPackageName = str;
                     overlayControllerVar3.window.setWindowManager(null, layoutParams.token, new ComponentName(overlayControllerVar3, overlayControllerVar3.getBaseContext().getClass()).flattenToShortString(), true);
                     overlayControllerVar3.windowManager = overlayControllerVar3.window.getWindowManager();
                     Point point = new Point();
                     overlayControllerVar3.windowManager.getDefaultDisplay().getRealSize(point);
                     overlayControllerVar3.mWindowShift = -Math.max(point.x, point.y);
                     overlayControllerVar3.slidingPanelLayout = new OverlayControllerSlidingPanelLayout(overlayControllerVar3);
-                    overlayControllerVar3.unW = new FrameLayout(overlayControllerVar3);
-                    overlayControllerVar3.slidingPanelLayout.el(overlayControllerVar3.unW);
+                    overlayControllerVar3.container = new FrameLayout(overlayControllerVar3);
+                    overlayControllerVar3.slidingPanelLayout.el(overlayControllerVar3.container);
                     overlayControllerVar3.slidingPanelLayout.uoH = overlayControllerVar3.overlayControllerStateChanger;
                     layoutParams.width = -1;
                     layoutParams.height = -1;

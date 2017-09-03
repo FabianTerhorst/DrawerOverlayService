@@ -13,10 +13,10 @@ public class OverlayController extends DialogOverlayController {
     public boolean mIsRtl;
     public long obZ = 0;
     public int mWindowShift;
-    public String unT;
+    public String mPackageName;
     public SlidingPanelLayout slidingPanelLayout;
     public t overlayControllerStateChanger = new OverlayControllerStateChanger(this);
-    public FrameLayout unW;
+    public FrameLayout container;
     public int unX = 0;
     public boolean mAcceptExternalMove = false;
     public boolean unZ = true;

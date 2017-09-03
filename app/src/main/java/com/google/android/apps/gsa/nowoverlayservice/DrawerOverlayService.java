@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 public class DrawerOverlayService extends BaseService {
 
-    public OverlaysController overlaysController;
+    private OverlaysController overlaysController;
 
     public void onCreate() {
         super.onCreate();

@@ -17,7 +17,7 @@ import java.util.Arrays;
 public abstract class OverlaysController {
 
     public final Service service;
-    public final SparseArray uol = new SparseArray();
+    public final SparseArray<OverlayControllerBinder> uol = new SparseArray<>();
     public final Handler handler = new Handler();
 
     public OverlaysController(Service service) {
@@ -27,7 +27,7 @@ public abstract class OverlaysController {
     public abstract OverlayController createController(Configuration configuration, int i, int i2, boolean z, boolean z2);
 
     public final synchronized IBinder onBind(Intent intent) {
-        IBinder iBinder;
+        OverlayControllerBinder iBinder;
         int i = Integer.MAX_VALUE;
         synchronized (this) {
             Uri data = intent.getData();
@@ -62,9 +62,9 @@ public abstract class OverlaysController {
                             Log.e("OverlaySController", "Only system apps are allowed to connect");
                             iBinder = null;
                         } else {
-                            iBinder = (OverlayControllerBinder) this.uol.get(port);
-                            if (!(iBinder == null || ((OverlayControllerBinder) iBinder).uou == parseInt)) {
-                                ((OverlayControllerBinder) iBinder).destroy();
+                            iBinder = this.uol.get(port);
+                            if (!(iBinder == null || iBinder.uou == parseInt)) {
+                                iBinder.destroy();
                                 iBinder = null;
                             }
                             if (iBinder == null) {
@@ -85,7 +85,7 @@ public abstract class OverlaysController {
     public final synchronized void unUnbind(Intent intent) {
         int port = intent.getData().getPort();
         if (port != -1) {
-            OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.get(port);
+            OverlayControllerBinder overlayControllerBinderVar = this.uol.get(port);
             if (overlayControllerBinderVar != null) {
                 overlayControllerBinderVar.destroy();
             }
@@ -119,7 +119,7 @@ public abstract class OverlaysController {
 
     public final synchronized void onDestroy() {
         for (int size = this.uol.size() - 1; size >= 0; size--) {
-            OverlayControllerBinder overlayControllerBinderVar = (OverlayControllerBinder) this.uol.valueAt(size);
+            OverlayControllerBinder overlayControllerBinderVar = this.uol.valueAt(size);
             if (overlayControllerBinderVar != null) {
                 overlayControllerBinderVar.destroy();
             }

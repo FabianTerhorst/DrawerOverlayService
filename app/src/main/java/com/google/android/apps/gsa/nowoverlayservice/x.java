@@ -3,7 +3,6 @@ package com.google.android.apps.gsa.nowoverlayservice;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -17,7 +16,7 @@ public class x extends d/* implements dy, a*/ {
     private final Context context;
 
     public x(Context context, int i, int i2, boolean z, boolean z2) {
-        super(context, /*cd.dDp*/R.style.AppTheme2, R.style.AppTheme2/*cd.dDo*/);//Todo: fix theme
+        super(context, R.style.AppTheme, R.style.AppTheme2);
         this.context = context;
         /*this.mContext = context;
         this.dzV = i;

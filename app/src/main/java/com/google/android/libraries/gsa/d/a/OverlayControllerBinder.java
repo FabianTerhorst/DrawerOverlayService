@@ -15,7 +15,7 @@ import com.google.android.libraries.i.d;
 
 final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder implements Runnable {
 
-    public int blh = 0;
+    public int mOptions = 0;
     public final String mPackageName;
     public final /* synthetic */ OverlaysController overlaysController;
     public final int mCallerUid;
@@ -23,7 +23,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     public final int mClientVersion;
     public BaseCallback baseCallback = new BaseCallback();
     public Handler mainThreadHandler = new Handler(Looper.getMainLooper(), this.baseCallback);
-    public boolean uoy;
+    public boolean mLastAttachWasLandscape;
 
     public OverlayControllerBinder(OverlaysController overlaysControllerVar, int callerUid, String packageName, int serverVersion, int clientVersion) {
         this.overlaysController = overlaysControllerVar;
@@ -67,7 +67,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
         this.overlaysController.handler.removeCallbacks(this);
         Configuration configuration = bundle.getParcelable("configuration");
         boolean z = configuration != null && configuration.orientation == 2;
-        this.uoy = z;
+        this.mLastAttachWasLandscape = z;
         BL(bundle.getInt("client_options", 7));
         Message.obtain(this.mainThreadHandler, 0, 1, 0, Pair.create(bundle, dVar)).sendToTarget();
     }
@@ -98,13 +98,13 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
             if ((i2 & 1) != 0) {
                 i2 = 1;
             }
-            if (this.blh != i2) {
+            if (this.mOptions != i2) {
                 BaseCallback baseCallbackVar;
                 this.mainThreadHandler.removeCallbacksAndMessages(null);
                 Message.obtain(this.mainThreadHandler, 0, 0, 0).sendToTarget();
                 of(true);
-                this.blh = i2;
-                switch (this.blh) {
+                this.mOptions = i2;
+                switch (this.mOptions) {
                     case 1:
                         baseCallbackVar = new MinusOneOverlayCallback(this.overlaysController, this);
                         break;

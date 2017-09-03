@@ -24,8 +24,8 @@ public class OverlayController extends DialogOverlayController {
     public PanelState panelState = PanelState.CLOSED;
     public int mActivityStateFlags = 0;
 
-    public OverlayController(Context context, int i, int i2) {
-        super(context, i, i2);
+    public OverlayController(Context context, int theme, int dialogTheme) {
+        super(context, theme, dialogTheme);
     }
 
     final void b(int i, int i2, long j) {
@@ -38,11 +38,11 @@ public class OverlayController extends DialogOverlayController {
     final com.google.android.libraries.i.d cnC() {
         BJ(0);
         try {
-            this.windowManager.removeView(this.unS);
+            this.windowManager.removeView(this.windowView);
         } catch (Throwable e) {
             Log.e("wo.OverlayController", "Error removing overlay window", e);
         }
-        this.unS = null;
+        this.windowView = null;
         cnB();
         onDestroy();
         return this.uoa;

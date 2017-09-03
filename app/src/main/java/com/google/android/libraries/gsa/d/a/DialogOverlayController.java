@@ -27,7 +27,7 @@ public class DialogOverlayController extends ContextThemeWrapper implements Call
     public WindowManager windowManager;
     public final Window window;
     public final HashSet<DialogInterface> dialogs = new HashSet<>();
-    public View unS;
+    public View windowView;
 
     public DialogOverlayController(Context context, int theme, int dialogTheme) {
         super(context, theme);
@@ -96,8 +96,8 @@ public class DialogOverlayController extends ContextThemeWrapper implements Call
     }
 
     public void onWindowAttributesChanged(LayoutParams layoutParams) {
-        if (this.unS != null) {
-            this.windowManager.updateViewLayout(this.unS, layoutParams);
+        if (this.windowView != null) {
+            this.windowManager.updateViewLayout(this.windowView, layoutParams);
         }
     }
 

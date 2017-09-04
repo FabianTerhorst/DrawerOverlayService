@@ -158,7 +158,7 @@ abstract class OverlayControllerCallback extends BaseCallback {
                 if (this.overlayController == null) {
                     return true;
                 }
-                this.overlayController.a((h) message.obj);
+                this.overlayController.a((ByteBundleHolder) message.obj);
                 return true;
             default:
                 return false;

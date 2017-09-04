@@ -135,7 +135,7 @@ final class OverlayControllerBinder extends LauncherOverlayInterfaceBinder imple
     }
 
     public final synchronized boolean a(byte[] bArr, Bundle bundle) {
-        Message.obtain(this.mainThreadHandler, 8, new h(bArr, bundle)).sendToTarget();
+        Message.obtain(this.mainThreadHandler, 8, new ByteBundleHolder(bArr, bundle)).sendToTarget();
         return true;
     }
 

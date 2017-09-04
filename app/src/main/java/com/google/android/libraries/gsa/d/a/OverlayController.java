@@ -132,7 +132,7 @@ public class OverlayController extends DialogOverlayController {
         }
     }
 
-    public void a(h hVar) {
+    public void a(ByteBundleHolder byteBundleHolderVar) {
     }
 
     public void onBackPressed() {

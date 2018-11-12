@@ -5,7 +5,8 @@ import android.util.Log;
 import android.view.WindowManager.LayoutParams;
 
 final class OverlayControllerStateChanger implements t {
-    public final /* synthetic */ OverlayController overlayController;
+
+    private final OverlayController overlayController;
 
     OverlayControllerStateChanger(OverlayController overlayControllerVar) {
         this.overlayController = overlayControllerVar;

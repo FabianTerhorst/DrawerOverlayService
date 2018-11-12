@@ -1,10 +1,9 @@
 package io.fabianterhorst.launcheroverlay;
 
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 
 import com.google.android.libraries.launcherclient.LauncherClient;
